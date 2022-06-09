@@ -24,12 +24,29 @@ export const SubMenuContainer = styled.ul`
 `;
 
 export const InnerMenu = styled.div<{ isVisible: boolean }>`
-  display: ${({ isVisible }) => (isVisible ? "block" : "none")};
+  height: 100%;
+  display: ${({ isVisible }) => (isVisible ? "flex" : "none")};
+  flex-wrap: wrap;
+  padding: 1rem;
+`;
+
+export const InnerMenuTitle = styled.h4`
+  margin-bottom: 1.5rem;
 `;
 
 export const InnerMenuContent = styled.div`
-  display: block;
+  flex: 0 0 50%;
+  max-width: 50%;
+  padding: 2rem;
 `;
+
+export const InnerMenuItems = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+`;
+
+export const InnerMenuItem = styled.p``;
 
 export const SubMenuInner = styled.div`
   margin-top: 6rem;
@@ -51,8 +68,8 @@ export const SubMenuItemContents = styled.div`
   background-color: white;
   max-width: 70%;
   flex: 0 0 70%;
-  align-self: flex-start;
-  justify-self: flex-start;
+  align-self: stretch;
+  justify-self: stretch;
 `;
 
 export const SubMenuItem = styled.li<{ isSelected: boolean }>`

@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   InnerMenu,
   InnerMenuContent,
+  InnerMenuItem,
+  InnerMenuItems,
+  InnerMenuTitle,
   MenuContainer,
   MenuItem,
   MenuItemText,
@@ -12,185 +15,58 @@ import {
   SubMenuItemContents,
   SubMenuItems,
 } from "./Navigation.styles";
+import { NavigationMenuData } from "./Navigation.types";
+import useNavigation from "./useNavigation";
 
-const Navigation = () => {
-  const [activeSubMenu, setActiveSubMenu] = useState<undefined | number>();
+const Navigation = ({ data }: NavigationMenuData) => {
+  const { activeSubMenu, setActiveSubMenu } = useNavigation();
+
   return (
     <NavigationContainer>
       <MenuContainer>
-        <MenuItem>
-          <MenuItemText>Menu1</MenuItemText>
-          <SubMenuContainer>
-            <SubMenuInner>
-              <SubMenuItems>
-                <SubMenuItem
-                  isSelected={activeSubMenu === 1}
-                  onMouseOver={() => setActiveSubMenu(1)}
-                >
-                  Menu1 - Submenu1
-                </SubMenuItem>
-                <SubMenuItem
-                  isSelected={activeSubMenu === 2}
-                  onMouseOver={() => setActiveSubMenu(2)}
-                >
-                  Menu1 - Submenu2
-                </SubMenuItem>
-              </SubMenuItems>
+        {data.map(({ label, subMenu }, i) => (
+          <MenuItem key={label + i}>
+            <MenuItemText>{label}</MenuItemText>
+            <SubMenuContainer>
+              <SubMenuInner>
+                <SubMenuItems>
+                  {subMenu.map(({ label }, i) => (
+                    <SubMenuItem
+                      key={label + i}
+                      isSelected={activeSubMenu === i}
+                      onMouseOver={() => setActiveSubMenu(i)}
+                    >
+                      {label}
+                    </SubMenuItem>
+                  ))}
+                </SubMenuItems>
 
-              <SubMenuItemContents>
-                <InnerMenu
-                  isVisible={activeSubMenu === 1}
-                  onMouseOver={() => setActiveSubMenu(1)}
-                >
-                  <InnerMenuContent>
-                  Submenu 1 Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Quaerat in corporis asperiores sint! Facere consectetur ex
-                    facilis eum magni ab maiores distinctio rem repudiandae
-                    asperiores, perspiciatis veniam deleniti a. Quaerat! Lorem
-                    ipsum dolor sit amet consectetur adipisicing elit. Quaerat
-                    in corporis asperiores sint! Facere consectetur ex facilis
-                    eum magni ab maiores distinctio rem repudiandae asperiores,
-                    perspiciatis veniam deleniti a. Quaerat! Lorem ipsum dolor
-                    sit amet consectetur adipisicing elit. Quaerat in corporis
-                    asperiores sint! Facere consectetur ex facilis eum magni ab
-                    maiores distinctio rem repudiandae asperiores, perspiciatis
-                    veniam deleniti a. Quaerat! Lorem ipsum dolor sit amet
-                    consectetur adipisicing elit. Quaerat in corporis asperiores
-                    sint! Facere consectetur ex facilis eum magni ab maiores
-                    distinctio rem repudiandae asperiores, perspiciatis veniam
-                    deleniti a. Quaerat!
-                  </InnerMenuContent>
-                </InnerMenu>
-                <InnerMenu
-                  isVisible={activeSubMenu === 2}
-                  onMouseOver={() => setActiveSubMenu(2)}
-                >
-                  <InnerMenuContent>
-                  Submenu2 Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Quaerat in corporis asperiores sint! Facere consectetur ex
-                    facilis eum magni ab maiores distinctio rem repudiandae
-                    asperiores, perspiciatis veniam deleniti a. Quaerat! Lorem
-                    ipsum dolor sit amet consectetur adipisicing elit. Quaerat
-                    in corporis asperiores sint! Facere consectetur ex facilis
-                    eum magni ab maiores distinctio rem repudiandae asperiores,
-                    perspiciatis veniam deleniti a. Quaerat! Lorem ipsum dolor
-                    sit amet consectetur adipisicing elit. Quaerat in corporis
-                    asperiores sint! Facere consectetur ex facilis eum magni ab
-                    maiores distinctio rem repudiandae asperiores, perspiciatis
-                    veniam deleniti a. Quaerat! Lorem ipsum dolor sit amet
-                    consectetur adipisicing elit. Quaerat in corporis asperiores
-                    sint! Facere consectetur ex facilis eum magni ab maiores
-                    distinctio rem repudiandae asperiores, perspiciatis veniam
-                    deleniti a. Quaerat! Lorem ipsum dolor sit amet consectetur
-                    adipisicing elit. Quaerat in corporis asperiores sint!
-                    Facere consectetur ex facilis eum magni ab maiores
-                    distinctio rem repudiandae asperiores, perspiciatis veniam
-                    deleniti a. Quaerat! Lorem ipsum dolor sit amet 
-                    +.consectetur
-                    adipisicing elit. Quaerat in corporis asperiores sint!
-                    Facere consectetur ex facilis eum magni ab maiores
-                    distinctio rem repudiandae asperiores, perspiciatis veniam
-                    deleniti a. Quaerat! Lorem ipsum dolor sit amet consectetur
-                    adipisicing elit. Quaerat in corporis asperiores sint!
-                    Facere consectetur ex facilis eum magni ab maiores
-                    distinctio rem repudiandae asperiores, perspiciatis veniam
-                    deleniti a. Quaerat! Lorem ipsum dolor sit amet consectetur
-                    adipisicing elit. Quaerat in corporis asperiores sint!
-                    Facere consectetur ex facilis eum magni ab maiores
-                    distinctio rem repudiandae asperiores, perspiciatis veniam
-                    deleniti a. Quaerat!
-                  </InnerMenuContent>
-                </InnerMenu>
-              </SubMenuItemContents>
-            </SubMenuInner>
-          </SubMenuContainer>
-        </MenuItem>
-        <MenuItem>
-          <MenuItemText>Menu2</MenuItemText>
-          <SubMenuContainer>
-            <SubMenuInner>
-              <SubMenuItems>
-                <SubMenuItem
-                  isSelected={activeSubMenu === 1}
-                  onMouseOver={() => setActiveSubMenu(1)}
-                >
-                  Submenu1
-                </SubMenuItem>
-                <SubMenuItem
-                  isSelected={activeSubMenu === 2}
-                  onMouseOver={() => setActiveSubMenu(2)}
-                >
-                  Submenu2
-                </SubMenuItem>
-              </SubMenuItems>
-
-              <SubMenuItemContents>
-                <InnerMenu
-                  isVisible={activeSubMenu === 1}
-                  onMouseOver={() => setActiveSubMenu(1)}
-                >
-                  <InnerMenuContent>
-                  Submenu1 Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Quaerat in corporis asperiores sint! Facere consectetur ex
-                    facilis eum magni ab maiores distinctio rem repudiandae
-                    asperiores, perspiciatis veniam deleniti a. Quaerat! Lorem
-                    ipsum dolor sit amet consectetur adipisicing elit. Quaerat
-                    in corporis asperiores sint! Facere consectetur ex facilis
-                    eum magni ab maiores distinctio rem repudiandae asperiores,
-                    perspiciatis veniam deleniti a. Quaerat! Lorem ipsum dolor
-                    sit amet consectetur adipisicing elit. Quaerat in corporis
-                    asperiores sint! Facere consectetur ex facilis eum magni ab
-                    maiores distinctio rem repudiandae asperiores, perspiciatis
-                    veniam deleniti a. Quaerat! Lorem ipsum dolor sit amet
-                    consectetur adipisicing elit. Quaerat in corporis asperiores
-                    sint! Facere consectetur ex facilis eum magni ab maiores
-                    distinctio rem repudiandae asperiores, perspiciatis veniam
-                    deleniti a. Quaerat!
-                  </InnerMenuContent>
-                </InnerMenu>
-                <InnerMenu
-                  isVisible={activeSubMenu === 2}
-                  onMouseOver={() => setActiveSubMenu(2)}
-                >
-                  <InnerMenuContent>
-                  Submenu2 Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Quaerat in corporis asperiores sint! Facere consectetur ex
-                    facilis eum magni ab maiores distinctio rem repudiandae
-                    asperiores, perspiciatis veniam deleniti a. Quaerat! Lorem
-                    ipsum dolor sit amet consectetur adipisicing elit. Quaerat
-                    in corporis asperiores sint! Facere consectetur ex facilis
-                    eum magni ab maiores distinctio rem repudiandae asperiores,
-                    perspiciatis veniam deleniti a. Quaerat! Lorem ipsum dolor
-                    sit amet consectetur adipisicing elit. Quaerat in corporis
-                    asperiores sint! Facere consectetur ex facilis eum magni ab
-                    maiores distinctio rem repudiandae asperiores, perspiciatis
-                    veniam deleniti a. Quaerat! Lorem ipsum dolor sit amet
-                    consectetur adipisicing elit. Quaerat in corporis asperiores
-                    sint! Facere consectetur ex facilis eum magni ab maiores
-                    distinctio rem repudiandae asperiores, perspiciatis veniam
-                    deleniti a. Quaerat! Lorem ipsum dolor sit amet consectetur
-                    adipisicing elit. Quaerat in corporis asperiores sint!
-                    Facere consectetur ex facilis eum magni ab maiores
-                    distinctio rem repudiandae asperiores, perspiciatis veniam
-                    deleniti a. Quaerat! Lorem ipsum dolor sit amet consectetur
-                    adipisicing elit. Quaerat in corporis asperiores sint!
-                    Facere consectetur ex facilis eum magni ab maiores
-                    distinctio rem repudiandae asperiores, perspiciatis veniam
-                    deleniti a. Quaerat! Lorem ipsum dolor sit amet consectetur
-                    adipisicing elit. Quaerat in corporis asperiores sint!
-                    Facere consectetur ex facilis eum magni ab maiores
-                    distinctio rem repudiandae asperiores, perspiciatis veniam
-                    deleniti a. Quaerat! Lorem ipsum dolor sit amet consectetur
-                    adipisicing elit. Quaerat in corporis asperiores sint!
-                    Facere consectetur ex facilis eum magni ab maiores
-                    distinctio rem repudiandae asperiores, perspiciatis veniam
-                    deleniti a. Quaerat!
-                  </InnerMenuContent>
-                </InnerMenu>
-              </SubMenuItemContents>
-            </SubMenuInner>
-          </SubMenuContainer>
-        </MenuItem>
+                <SubMenuItemContents>
+                  {subMenu.map(({ innerMenus, label }, i) => (
+                    <InnerMenu
+                      key={label + i}
+                      isVisible={activeSubMenu === i}
+                      onMouseOver={() => setActiveSubMenu(i)}
+                    >
+                      {innerMenus.map(({ title, items }) => (
+                        <InnerMenuContent key={title + i}>
+                          <InnerMenuTitle>{title}</InnerMenuTitle>
+                          <InnerMenuItems>
+                            {items.map(({ label, href }, i) => (
+                              <InnerMenuItem key={label + i}>
+                                <a href={href}>{label}</a>
+                              </InnerMenuItem>
+                            ))}
+                          </InnerMenuItems>
+                        </InnerMenuContent>
+                      ))}
+                    </InnerMenu>
+                  ))}
+                </SubMenuItemContents>
+              </SubMenuInner>
+            </SubMenuContainer>
+          </MenuItem>
+        ))}
       </MenuContainer>
     </NavigationContainer>
   );
