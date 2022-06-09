@@ -23,46 +23,52 @@ export const SubMenuContainer = styled.ul`
   left: 0;
 `;
 
-export const SubMenuItemText = styled.span`
-  color: blue;
-  border-bottom:1px black solid;
+export const InnerMenu = styled.div<{ isVisible: boolean }>`
+  display: ${({ isVisible }) => (isVisible ? "block" : "none")};
 `;
 
-export const InnerMenu = styled.div`
-  background-color: brown;
-  display: none;
-  max-width: 70%;
-      flex:0 0 70%;
+export const InnerMenuContent = styled.div`
+  display: block;
 `;
 
 export const SubMenuInner = styled.div`
-  margin-top: 4rem;
+  margin-top: 6rem;
   background: ${({ theme }) => theme.colors.subMenuBg};
   width: 60vw;
-  height:40vh;
-  flex-direction: column;
   display: flex;
-`
-
-export const SubMenuItem = styled.li`
-  padding:0.5rem;
-  display: flex;
-  &:hover ${InnerMenu}{
-      display: block;
-  }
-  & > *:first-child {
-      background-color: azure;
-      max-width: 30%;
-      flex:0 0 30%;
-  }
 `;
 
+export const SubMenuItems = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-width: 30%;
+  flex: 0 0 30%;
+  align-self: stretch;
+  justify-self: stretch;
+`;
+
+export const SubMenuItemContents = styled.div`
+  background-color: white;
+  max-width: 70%;
+  flex: 0 0 70%;
+  align-self: flex-start;
+  justify-self: flex-start;
+`;
+
+export const SubMenuItem = styled.li<{ isSelected: boolean }>`
+  padding: 0.5rem;
+  background-color: ${({ isSelected }) =>
+    isSelected ? "white" : "transparent"};
+  &:hover {
+    background-color: white;
+  }
+`;
 
 export const MenuItem = styled.li`
   background-color: red;
   align-self: flex-start;
   justify-self: flex-start;
-  padding:1rem 1.5rem;
+  padding: 1rem 1.5rem;
   position: relative;
 
   &:hover {
@@ -74,5 +80,4 @@ export const MenuItem = styled.li`
   &:hover ${SubMenuContainer} {
     display: block;
   }
-
 `;
