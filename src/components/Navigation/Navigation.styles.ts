@@ -17,25 +17,46 @@ export const MenuItemText = styled.span`
 `;
 
 export const SubMenuContainer = styled.ul`
-  flex-direction: column;
   display: none;
   position: absolute;
   top: 0;
   left: 0;
-  padding-top: 4rem;
-`;
-
-export const SubMenuItem = styled.li`
-  background-color: orange;
 `;
 
 export const SubMenuItemText = styled.span`
   color: blue;
+  border-bottom:1px black solid;
 `;
 
 export const InnerMenu = styled.div`
   background-color: brown;
+  display: none;
+  max-width: 70%;
+      flex:0 0 70%;
 `;
+
+export const SubMenuInner = styled.div`
+  margin-top: 4rem;
+  background: ${({ theme }) => theme.colors.subMenuBg};
+  width: 60vw;
+  height:40vh;
+  flex-direction: column;
+  display: flex;
+`
+
+export const SubMenuItem = styled.li`
+  padding:0.5rem;
+  display: flex;
+  &:hover ${InnerMenu}{
+      display: block;
+  }
+  & > *:first-child {
+      background-color: azure;
+      max-width: 30%;
+      flex:0 0 30%;
+  }
+`;
+
 
 export const MenuItem = styled.li`
   background-color: red;
@@ -51,7 +72,7 @@ export const MenuItem = styled.li`
     color: white;
   }
   &:hover ${SubMenuContainer} {
-    display: flex;
+    display: block;
   }
 
 `;
