@@ -1,10 +1,10 @@
 import { DefaultTheme } from "styled-components";
 
 export const theme: DefaultTheme = {
-  breakPoints: {
-    sm: "425px",
-    md: "768px",
-    lg: "964px",
-    xl: "1240px",
+  colors: {
+    bg: '#f5f5f5',
+    subMenuBg: '#e3e3e3',
+    border: '#6e7c80',
+    button: '#5b5fc7'
   },
 };

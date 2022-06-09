@@ -14,6 +14,7 @@ export const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'Inter', sans-serif;
     font-size: 1.6rem;
+    background-color: ${({ theme }) => theme.colors.bg};
   }
 
   a, a:hover, a:focus, a:active {
@@ -25,4 +26,9 @@ export const GlobalStyle = createGlobalStyle`
     display: block;
     width: 100%;
   }
+
+  ul {
+    list-style: none;
+  }
+  
 `;

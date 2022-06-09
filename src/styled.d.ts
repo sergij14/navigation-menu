@@ -4,11 +4,11 @@ import "styled-components";
 
 declare module "styled-components" {
   export interface DefaultTheme {
-    breakPoints: {
-      sm: string;
-      md: string;
-      lg: string;
-      xl: string;
+    colors: {
+      bg: string;
+      subMenuBg: string;
+      border: string;
+      button: string;
     };
   }
 }
