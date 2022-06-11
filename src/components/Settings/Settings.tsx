@@ -4,10 +4,11 @@ import { NavigationMenuData } from "../Navigation/Navigation.types";
 import MenuFields from "./Fields/MenuFields";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { menuSchema } from "./Settings.schema";
-import useTypedLocalStorage from "../../hooks/useTypedLocalStorage";
+import useNavigation from "../Navigation/useNavigation";
+import { useNavigate } from "react-router-dom";
 
 export default function Settings(){
-  const {typedStorage} = useTypedLocalStorage<NavigationMenuData>()
+    const {typedStorage, menus} = useNavigation();
     const {
         control,
         register,
@@ -18,12 +19,14 @@ export default function Settings(){
         setValue
       } = useForm<NavigationMenuData>({
         mode: 'onChange',
-        defaultValues: {menus: typedStorage.getItem('menus')  || [] },
+        defaultValues: {menus: menus || [] },
         resolver: yupResolver(menuSchema),
       });
+
+      const navigate = useNavigate();
       const onSubmit = (data: NavigationMenuData) => {
-        console.log(data);
         typedStorage.setItem('menus', data.menus);
+        navigate('/')
       }      
 
       return (

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   InnerMenu,
   InnerMenuContent,
@@ -15,16 +16,15 @@ import {
   SubMenuItemContents,
   SubMenuItems,
 } from "./Navigation.styles";
-import { NavigationMenuData } from "./Navigation.types";
 import useNavigation from "./useNavigation";
 
-const Navigation = ({ menus }: NavigationMenuData) => {
-  const { activeSubMenu, setActiveSubMenu } = useNavigation();
+const Navigation = () => {
+  const { activeSubMenu, setActiveSubMenu, menus } = useNavigation();
 
   return (
     <NavigationContainer>
       <MenuContainer>
-        {menus.map(({ label, subMenus }, i) => (
+        {menus?.map(({ label, subMenus }, i) => (
           <MenuItem key={label + i}>
             <MenuItemText>{label}</MenuItemText>
             <SubMenuContainer>
@@ -67,6 +67,9 @@ const Navigation = ({ menus }: NavigationMenuData) => {
             </SubMenuContainer>
           </MenuItem>
         ))}
+        {menus && menus?.length < 1 && <p>
+            There are no menu items. Please go to <Link to="settings">Settings</Link>
+          </p>}
       </MenuContainer>
     </NavigationContainer>
   );
