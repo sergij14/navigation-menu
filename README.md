@@ -1,2 +1,2 @@
 # navigation-menu
-test task...
+test task
