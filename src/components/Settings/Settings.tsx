@@ -8,7 +8,7 @@ import useNavigation from "../Navigation/useNavigation";
 import { useNavigate } from "react-router-dom";
 
 export default function Settings(){
-    const {typedStorage, menus} = useNavigation();
+    const {typedStorage} = useNavigation();
     const {
         control,
         register,
@@ -19,7 +19,7 @@ export default function Settings(){
         setValue
       } = useForm<NavigationMenuData>({
         mode: 'onChange',
-        defaultValues: {menus: menus || [] },
+        defaultValues: {menus: typedStorage.getItem('menus')  || [] },
         resolver: yupResolver(menuSchema),
       });
 
