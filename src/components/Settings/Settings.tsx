@@ -1,6 +1,25 @@
 
-import { useForm } from "react-hook-form";
-import FieldArray from "./FieldArray";
+import { Control, useForm, UseFormRegister } from "react-hook-form";
+import MenuFields from "./MenuFields";
+
+type DataType = {menus: {
+    label: string;
+    subMenu: {
+        label: string;
+        innerMenus: {
+            title: string;
+            items: {
+                label: string;
+                href: string;
+            }[];
+        }[];
+    }[];
+}[]}
+
+export type Props = { 
+  register: UseFormRegister<DataType>, 
+  control: Control<DataType, any>
+}
 
 export default function Settings(){
     const {
@@ -11,10 +30,10 @@ export default function Settings(){
         formState: {errors},
         reset,
         setValue
-      } = useForm<any>({
+      } = useForm<DataType>({
         mode: 'onChange'
       });
-      const onSubmit = (data: any) => console.log("data", data);
+      const onSubmit = (data: DataType) => console.log("data", data);
 
       return (
         <div>
@@ -23,12 +42,15 @@ export default function Settings(){
         The following example demonstrate the ability of building nested array
         fields.
       </p>
+      <form onSubmit={handleSubmit(onSubmit)}>
 
-      <FieldArray
-        {...{ control, register, getValues, setValue, errors }}
+      <MenuFields
+        {...{ control, register }}
       />
 
       <button type="submit">submt</button>
+      </form>
+
         </div>
       )
 }

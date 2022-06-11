@@ -1,10 +1,11 @@
 import React from "react";
 import { useFieldArray } from "react-hook-form";
+import { Props } from "./Settings";
 
-export default ({ nestIndex, innerIndex, control, register }: any) => {
-  const { fields, remove, append } = useFieldArray({
+export default function InnerMenuFields ({ nestIndex, innerIndex, control, register }: Props & {innerIndex: number, nestIndex: number}) {
+  const { fields, remove, prepend } = useFieldArray({
     control,
-    name: `test[${nestIndex}].nestedArray[${innerIndex}].innerNestedArray`
+    name: `menus.${nestIndex}.subMenu.${innerIndex}.innerMenus`
   });
 
   return (
@@ -14,15 +15,11 @@ export default ({ nestIndex, innerIndex, control, register }: any) => {
           <div key={item.id} style={{ marginLeft: 20 }}>
             <label>Inner Nested Array:</label>
             <input
-              {...register(`test[${nestIndex}].nestedArray[${innerIndex}].innerNestedArray.field1`)}
+              {...register(`menus.${nestIndex}.subMenu.${innerIndex}.innerMenus.${k}.title`)}
               style={{ marginRight: "25px" }}
             />
-
-            <input
-              {...register(`test[${nestIndex}].nestedArray[${innerIndex}].innerNestedArray.field2`)}
-            />
             <button type="button" onClick={() => remove(k)}>
-              Delete Nested
+              Delete submenu inner menu
             </button>
           </div>
         );
@@ -31,11 +28,13 @@ export default ({ nestIndex, innerIndex, control, register }: any) => {
       <button
         type="button"
         onClick={() =>
-          append({
+          prepend({
+            items: [],
+            title: ''
           })
         }
       >
-        Append Nested
+        Add submenu inner menu
       </button>
 
       <hr />

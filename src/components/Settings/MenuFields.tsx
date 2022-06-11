@@ -1,20 +1,14 @@
 import React from "react";
-import { useFieldArray } from "react-hook-form";
-import NestedArray from "./NestedFieldArray";
+import { Control, useFieldArray, UseFormRegister } from "react-hook-form";
+import { Props } from "./Settings";
+import SubMenuFields from "./SubMenuFields";
 
-let renderCount = 0;
-
-type Props = {
-
-}
-
-export default function Fields({ control, register, setValue, getValues }: any) {
+export default function MenuFields({ control, register }: Props) {
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "test"
+    name: "menus"
   });
 
-  renderCount++;
 
   return (
     <>
@@ -23,13 +17,13 @@ export default function Fields({ control, register, setValue, getValues }: any) 
           return (
             <li key={item.id}>
               <input
-                {...register(`test[${index}].name`)}
+                {...register(`menus.${index}.label`)}
               />
 
               <button type="button" onClick={() => remove(index)}>
-                Delete
+                Delete menu
               </button>
-              <NestedArray nestIndex={index} {...{ control, register }} />
+              <SubMenuFields nestIndex={index} {...{ control, register }} />
             </li>
           );
         })}
@@ -39,15 +33,14 @@ export default function Fields({ control, register, setValue, getValues }: any) 
         <button
           type="button"
           onClick={() => {
-            append({});
+            append({label: '', subMenu: []});
           }}
         >
-          append
+          Add menu
         </button>
 
       </section>
 
-      <span className="counter">Render Count: {renderCount}</span>
     </>
   );
 }
