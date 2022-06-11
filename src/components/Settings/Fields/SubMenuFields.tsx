@@ -3,10 +3,15 @@ import { useFieldArray } from "react-hook-form";
 import { Props } from "../Settings.types";
 import InnerMenuFields from "./InnerMenuFields";
 
-export default  function SubMenuFields ({ nestIndex, control, register, formState }: Props & {nestIndex: number}) {
-  const { fields, remove, prepend } = useFieldArray({
+export default function SubMenuFields({
+  nestIndex,
+  control,
+  register,
+  formState,
+}: Props & { nestIndex: number }) {
+  const { fields, remove, append } = useFieldArray({
     control,
-    name: `menus.${nestIndex}.subMenus`
+    name: `menus.${nestIndex}.subMenus`,
   });
 
   return (
@@ -20,9 +25,16 @@ export default  function SubMenuFields ({ nestIndex, control, register, formStat
               style={{ marginRight: "25px" }}
             />
             <p>
-              {formState.errors?.menus?.[nestIndex]?.subMenus?.[k]?.label?.message}
+              {
+                formState.errors?.menus?.[nestIndex]?.subMenus?.[k]?.label
+                  ?.message
+              }
             </p>
-          <InnerMenuFields nestIndex={nestIndex} innerIndex={k} {...{ control, register, formState }} />
+            <InnerMenuFields
+              nestIndex={nestIndex}
+              innerIndex={k}
+              {...{ control, register, formState }}
+            />
             <button type="button" onClick={() => remove(k)}>
               Delete submenu
             </button>
@@ -33,9 +45,9 @@ export default  function SubMenuFields ({ nestIndex, control, register, formStat
       <button
         type="button"
         onClick={() =>
-          prepend({
-            label: '',
-            innerMenus: []
+          append({
+            label: "",
+            innerMenus: [],
           })
         }
       >
@@ -45,4 +57,4 @@ export default  function SubMenuFields ({ nestIndex, control, register, formStat
       <hr />
     </div>
   );
-};
+}

@@ -19,7 +19,8 @@ import {
 import useNavigation from "./useNavigation";
 
 const Navigation = () => {
-  const { activeSubMenu, setActiveSubMenu, menus } = useNavigation();
+  const { activeSubMenu, setActiveSubMenu, typedStorage } = useNavigation();
+  const menus = typedStorage.getItem('menus');
 
   return (
     <NavigationContainer>
@@ -67,9 +68,12 @@ const Navigation = () => {
             </SubMenuContainer>
           </MenuItem>
         ))}
-        {menus && menus?.length < 1 && <p>
-            There are no menu items. Please go to <Link to="settings">Settings</Link>
-          </p>}
+        {!menus && (
+          <p>
+            There are no menu items. Please go to{" "}
+            <Link to="settings">Settings</Link>
+          </p>
+        )}
       </MenuContainer>
     </NavigationContainer>
   );

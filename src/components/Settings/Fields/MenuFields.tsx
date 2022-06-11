@@ -1,5 +1,5 @@
 import React from "react";
-import { Control, useFieldArray, UseFormRegister } from "react-hook-form";
+import { useFieldArray } from "react-hook-form";
 import { Props } from "../Settings.types";
 import SubMenuFields from "./SubMenuFields";
 
@@ -8,7 +8,6 @@ export default function MenuFields({ control, register, formState }: Props) {
     control,
     name: "menus"
   });
-
 
   return (
     <>

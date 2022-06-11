@@ -3,10 +3,16 @@ import { useFieldArray } from "react-hook-form";
 import { Props } from "../Settings.types";
 import InnerMenuItems from "./InnerMenuItems";
 
-export default function InnerMenuFields ({ nestIndex, innerIndex, control, register, formState }: Props & {innerIndex: number, nestIndex: number}) {
-  const { fields, remove, prepend } = useFieldArray({
+export default function InnerMenuFields({
+  nestIndex,
+  innerIndex,
+  control,
+  register,
+  formState,
+}: Props & { innerIndex: number; nestIndex: number }) {
+  const { fields, remove, append } = useFieldArray({
     control,
-    name: `menus.${nestIndex}.subMenus.${innerIndex}.innerMenus`
+    name: `menus.${nestIndex}.subMenus.${innerIndex}.innerMenus`,
   });
 
   return (
@@ -16,13 +22,23 @@ export default function InnerMenuFields ({ nestIndex, innerIndex, control, regis
           <div key={item.id} style={{ marginLeft: 20 }}>
             <label>Submenu inner menu title:</label>
             <input
-              {...register(`menus.${nestIndex}.subMenus.${innerIndex}.innerMenus.${k}.title`)}
+              {...register(
+                `menus.${nestIndex}.subMenus.${innerIndex}.innerMenus.${k}.title`
+              )}
               style={{ marginRight: "25px" }}
             />
-                        <p>
-              {formState.errors?.menus?.[nestIndex]?.subMenus?.[innerIndex]?.innerMenus?.[k].title?.message}
+            <p>
+              {
+                formState.errors?.menus?.[nestIndex]?.subMenus?.[innerIndex]
+                  ?.innerMenus?.[k].title?.message
+              }
             </p>
-            <InnerMenuItems nestIndex={nestIndex} innerIndex={innerIndex} innerItemsIndex={k} {...{ control, register, formState }} />
+            <InnerMenuItems
+              nestIndex={nestIndex}
+              innerIndex={innerIndex}
+              innerItemsIndex={k}
+              {...{ control, register, formState }}
+            />
             <button type="button" onClick={() => remove(k)}>
               Delete submenu inner menu
             </button>
@@ -33,9 +49,9 @@ export default function InnerMenuFields ({ nestIndex, innerIndex, control, regis
       <button
         type="button"
         onClick={() =>
-          prepend({
+          append({
             items: [],
-            title: ''
+            title: "",
           })
         }
       >
@@ -45,4 +61,4 @@ export default function InnerMenuFields ({ nestIndex, innerIndex, control, regis
       <hr />
     </div>
   );
-};
+}
