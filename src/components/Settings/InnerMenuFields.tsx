@@ -19,6 +19,9 @@ export default function InnerMenuFields ({ nestIndex, innerIndex, control, regis
               {...register(`menus.${nestIndex}.subMenus.${innerIndex}.innerMenus.${k}.title`)}
               style={{ marginRight: "25px" }}
             />
+                        <p>
+              {formState.errors?.menus?.[nestIndex]?.subMenus?.[innerIndex]?.innerMenus?.[k].title?.message}
+            </p>
             <InnerMenuItems nestIndex={nestIndex} innerIndex={innerIndex} innerItemsIndex={k} {...{ control, register, formState }} />
             <button type="button" onClick={() => remove(k)}>
               Delete submenu inner menu

@@ -19,11 +19,17 @@ export default  function InnerMenuItems ({ nestIndex, innerIndex, innerItemsInde
               {...register(`menus.${nestIndex}.subMenus.${innerIndex}.innerMenus.${innerItemsIndex}.items.${k}.label`)}
               style={{ marginRight: "25px" }}
             />
+                                    <p>
+              {formState.errors?.menus?.[nestIndex]?.subMenus?.[innerIndex]?.innerMenus?.[innerItemsIndex]?.items?.[k]?.label?.message}
+            </p>
             <label>submenu inner menu item href:</label>
             <input
               {...register(`menus.${nestIndex}.subMenus.${innerIndex}.innerMenus.${innerItemsIndex}.items.${k}.href`)}
               style={{ marginRight: "25px" }}
             />
+                                                <p>
+              {formState.errors?.menus?.[nestIndex]?.subMenus?.[innerIndex]?.innerMenus?.[innerItemsIndex]?.items?.[k]?.href?.message}
+            </p>
             <button type="button" onClick={() => remove(k)}>
               Delete submenu inner menu item
             </button>
