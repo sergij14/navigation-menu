@@ -1,4 +1,5 @@
 import Navigation from "../Navigation/Navigation";
+import Settings from "../Settings/Settings";
 import { AppContainer } from "./App.styles";
 
 const navigationMenuData = [
@@ -102,7 +103,8 @@ const navigationMenuData = [
 const App = () => {
   return (
     <AppContainer>
-      <Navigation data={navigationMenuData} />
+      {/* <Navigation data={navigationMenuData} /> */}
+      <Settings />
     </AppContainer>
   );
 };
