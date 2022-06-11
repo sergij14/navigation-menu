@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function useSettings() {
   const { typedStorage } = useNavigation();
-  const menus = typedStorage.getItem("menus");
+  const menus = typedStorage.getItem("menus") || [];
 
   const { control, register, handleSubmit, formState } =
     useForm<NavigationMenuData>({
