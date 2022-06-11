@@ -1,5 +1,6 @@
 import React from "react";
 import { useFieldArray } from "react-hook-form";
+import InnerMenuItems from "./InnerMenuItems";
 import { Props } from "./Settings";
 
 export default function InnerMenuFields ({ nestIndex, innerIndex, control, register }: Props & {innerIndex: number, nestIndex: number}) {
@@ -13,11 +14,12 @@ export default function InnerMenuFields ({ nestIndex, innerIndex, control, regis
       {fields.map((item, k) => {
         return (
           <div key={item.id} style={{ marginLeft: 20 }}>
-            <label>Inner Nested Array:</label>
+            <label>Submenu inner menu title:</label>
             <input
               {...register(`menus.${nestIndex}.subMenu.${innerIndex}.innerMenus.${k}.title`)}
               style={{ marginRight: "25px" }}
             />
+            <InnerMenuItems nestIndex={nestIndex} innerIndex={innerIndex} innerItemsIndex={k} {...{ control, register }} />
             <button type="button" onClick={() => remove(k)}>
               Delete submenu inner menu
             </button>

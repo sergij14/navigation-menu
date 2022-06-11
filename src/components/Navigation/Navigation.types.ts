@@ -1,7 +1,7 @@
 export type NavigationMenuData = {
-  data: {
+  menus: {
     label: string;
-    subMenu: {
+    subMenus: {
       label: string;
       innerMenus: {
         title: string;

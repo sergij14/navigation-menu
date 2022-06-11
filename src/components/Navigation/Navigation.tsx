@@ -18,19 +18,19 @@ import {
 import { NavigationMenuData } from "./Navigation.types";
 import useNavigation from "./useNavigation";
 
-const Navigation = ({ data }: NavigationMenuData) => {
+const Navigation = ({ menus }: NavigationMenuData) => {
   const { activeSubMenu, setActiveSubMenu } = useNavigation();
 
   return (
     <NavigationContainer>
       <MenuContainer>
-        {data.map(({ label, subMenu }, i) => (
+        {menus.map(({ label, subMenus }, i) => (
           <MenuItem key={label + i}>
             <MenuItemText>{label}</MenuItemText>
             <SubMenuContainer>
               <SubMenuInner>
                 <SubMenuItems>
-                  {subMenu.map(({ label }, i) => (
+                  {subMenus.map(({ label }, i) => (
                     <SubMenuItem
                       key={label + i}
                       isSelected={activeSubMenu === i}
@@ -42,7 +42,7 @@ const Navigation = ({ data }: NavigationMenuData) => {
                 </SubMenuItems>
 
                 <SubMenuItemContents>
-                  {subMenu.map(({ innerMenus, label }, i) => (
+                  {subMenus.map(({ innerMenus, label }, i) => (
                     <InnerMenu
                       key={label + i}
                       isVisible={activeSubMenu === i}

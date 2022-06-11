@@ -1,24 +1,11 @@
 
 import { Control, useForm, UseFormRegister } from "react-hook-form";
+import { NavigationMenuData } from "../Navigation/Navigation.types";
 import MenuFields from "./MenuFields";
 
-type DataType = {menus: {
-    label: string;
-    subMenu: {
-        label: string;
-        innerMenus: {
-            title: string;
-            items: {
-                label: string;
-                href: string;
-            }[];
-        }[];
-    }[];
-}[]}
-
 export type Props = { 
-  register: UseFormRegister<DataType>, 
-  control: Control<DataType, any>
+  register: UseFormRegister<NavigationMenuData>, 
+  control: Control<NavigationMenuData, any>
 }
 
 export default function Settings(){
@@ -30,18 +17,13 @@ export default function Settings(){
         formState: {errors},
         reset,
         setValue
-      } = useForm<DataType>({
+      } = useForm<NavigationMenuData>({
         mode: 'onChange'
       });
-      const onSubmit = (data: DataType) => console.log("data", data);
+      const onSubmit = (data: NavigationMenuData) => console.log("data", data);
 
       return (
         <div>
-                  <h1>Array of Array Fields</h1>
-      <p>
-        The following example demonstrate the ability of building nested array
-        fields.
-      </p>
       <form onSubmit={handleSubmit(onSubmit)}>
 
       <MenuFields
