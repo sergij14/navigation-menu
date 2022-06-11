@@ -1,6 +1,6 @@
 import React from "react";
 import { Control, useFieldArray, UseFormRegister } from "react-hook-form";
-import { Props } from "./Settings";
+import { Props } from "../Settings.types";
 import SubMenuFields from "./SubMenuFields";
 
 export default function MenuFields({ control, register, formState }: Props) {

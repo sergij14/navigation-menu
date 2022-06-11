@@ -1,18 +1,13 @@
 
-import { Control, FormState, useForm, UseFormRegister } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { NavigationMenuData } from "../Navigation/Navigation.types";
-import MenuFields from "./MenuFields";
+import MenuFields from "./Fields/MenuFields";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { menuSchema } from "./schema";
-import { useEffect } from "react";
-
-export type Props = { 
-  register: UseFormRegister<NavigationMenuData>, 
-  control: Control<NavigationMenuData, any>,
-  formState: FormState<NavigationMenuData>
-}
+import { menuSchema } from "./Settings.schema";
+import useTypedLocalStorage from "../../hooks/useTypedLocalStorage";
 
 export default function Settings(){
+  const {typedStorage} = useTypedLocalStorage<NavigationMenuData>()
     const {
         control,
         register,
@@ -23,17 +18,13 @@ export default function Settings(){
         setValue
       } = useForm<NavigationMenuData>({
         mode: 'onChange',
+        defaultValues: {menus: typedStorage.getItem('menus')  || [] },
         resolver: yupResolver(menuSchema),
       });
       const onSubmit = (data: NavigationMenuData) => {
         console.log(data);
-        
-      }
-
-     useEffect(() => {
-      console.log(formState);
-     }, [formState])
-      
+        typedStorage.setItem('menus', data.menus);
+      }      
 
       return (
         <div>
@@ -43,7 +34,7 @@ export default function Settings(){
         {...{ control, register, formState }}
       />
 
-      <button type="submit">submt</button>
+      <button type="submit" disabled={!formState.isDirty}>submt</button>
       </form>
 
         </div>

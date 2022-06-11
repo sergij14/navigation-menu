@@ -1,4 +1,4 @@
-import { InnerMenu } from './../Navigation/Navigation.styles';
+import { InnerMenu } from '../Navigation/Navigation.styles';
 import * as yup from "yup";
 
 export const menuSchema = yup.object({

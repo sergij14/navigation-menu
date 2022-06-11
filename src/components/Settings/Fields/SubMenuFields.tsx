@@ -1,7 +1,7 @@
 import React from "react";
 import { useFieldArray } from "react-hook-form";
+import { Props } from "../Settings.types";
 import InnerMenuFields from "./InnerMenuFields";
-import { Props } from "./Settings";
 
 export default  function SubMenuFields ({ nestIndex, control, register, formState }: Props & {nestIndex: number}) {
   const { fields, remove, prepend } = useFieldArray({
