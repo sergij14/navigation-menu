@@ -1,11 +1,15 @@
 
-import { Control, useForm, UseFormRegister } from "react-hook-form";
+import { Control, FormState, useForm, UseFormRegister } from "react-hook-form";
 import { NavigationMenuData } from "../Navigation/Navigation.types";
 import MenuFields from "./MenuFields";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { menuSchema } from "./schema";
+import { useEffect } from "react";
 
 export type Props = { 
   register: UseFormRegister<NavigationMenuData>, 
-  control: Control<NavigationMenuData, any>
+  control: Control<NavigationMenuData, any>,
+  formState: FormState<NavigationMenuData>
 }
 
 export default function Settings(){
@@ -14,20 +18,29 @@ export default function Settings(){
         register,
         handleSubmit,
         getValues,
-        formState: {errors},
+        formState,
         reset,
         setValue
       } = useForm<NavigationMenuData>({
-        mode: 'onChange'
+        mode: 'onChange',
+        resolver: yupResolver(menuSchema),
       });
-      const onSubmit = (data: NavigationMenuData) => console.log("data", data);
+      const onSubmit = (data: NavigationMenuData) => {
+        console.log(data);
+        
+      }
+
+     useEffect(() => {
+      console.log(formState);
+     }, [formState])
+      
 
       return (
         <div>
       <form onSubmit={handleSubmit(onSubmit)}>
 
       <MenuFields
-        {...{ control, register }}
+        {...{ control, register, formState }}
       />
 
       <button type="submit">submt</button>

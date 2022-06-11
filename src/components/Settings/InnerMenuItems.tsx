@@ -3,7 +3,7 @@ import { useFieldArray } from "react-hook-form";
 import InnerMenuFields from "./InnerMenuFields";
 import { Props } from "./Settings";
 
-export default  function InnerMenuItems ({ nestIndex, innerIndex, innerItemsIndex, control, register }: Props & {nestIndex: number, innerIndex: number, innerItemsIndex :number,}) {
+export default  function InnerMenuItems ({ nestIndex, innerIndex, innerItemsIndex, control, register, formState }: Props & {nestIndex: number, innerIndex: number, innerItemsIndex :number,}) {
   const { fields, remove, prepend } = useFieldArray({
     control,
     name: `menus.${nestIndex}.subMenus.${innerIndex}.innerMenus.${innerItemsIndex}.items`

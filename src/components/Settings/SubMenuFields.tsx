@@ -3,7 +3,7 @@ import { useFieldArray } from "react-hook-form";
 import InnerMenuFields from "./InnerMenuFields";
 import { Props } from "./Settings";
 
-export default  function SubMenuFields ({ nestIndex, control, register }: Props & {nestIndex: number}) {
+export default  function SubMenuFields ({ nestIndex, control, register, formState }: Props & {nestIndex: number}) {
   const { fields, remove, prepend } = useFieldArray({
     control,
     name: `menus.${nestIndex}.subMenus`
@@ -19,7 +19,7 @@ export default  function SubMenuFields ({ nestIndex, control, register }: Props 
               {...register(`menus.${nestIndex}.subMenus.${k}.label`)}
               style={{ marginRight: "25px" }}
             />
-          <InnerMenuFields nestIndex={nestIndex} innerIndex={k} {...{ control, register }} />
+          <InnerMenuFields nestIndex={nestIndex} innerIndex={k} {...{ control, register, formState }} />
             <button type="button" onClick={() => remove(k)}>
               Delete submenu
             </button>

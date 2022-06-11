@@ -3,7 +3,7 @@ import { Control, useFieldArray, UseFormRegister } from "react-hook-form";
 import { Props } from "./Settings";
 import SubMenuFields from "./SubMenuFields";
 
-export default function MenuFields({ control, register }: Props) {
+export default function MenuFields({ control, register, formState }: Props) {
   const { fields, append, remove } = useFieldArray({
     control,
     name: "menus"
@@ -19,11 +19,13 @@ export default function MenuFields({ control, register }: Props) {
               <input
                 {...register(`menus.${index}.label`)}
               />
-
+              <p>
+              {formState.errors?.menus?.[index]?.label?.message}
+              </p>
               <button type="button" onClick={() => remove(index)}>
                 Delete menu
               </button>
-              <SubMenuFields nestIndex={index} {...{ control, register }} />
+              <SubMenuFields nestIndex={index} {...{ control, register, formState }} />
             </li>
           );
         })}
