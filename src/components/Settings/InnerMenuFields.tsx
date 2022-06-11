@@ -6,7 +6,7 @@ import { Props } from "./Settings";
 export default function InnerMenuFields ({ nestIndex, innerIndex, control, register }: Props & {innerIndex: number, nestIndex: number}) {
   const { fields, remove, prepend } = useFieldArray({
     control,
-    name: `menus.${nestIndex}.subMenu.${innerIndex}.innerMenus`
+    name: `menus.${nestIndex}.subMenus.${innerIndex}.innerMenus`
   });
 
   return (
@@ -16,7 +16,7 @@ export default function InnerMenuFields ({ nestIndex, innerIndex, control, regis
           <div key={item.id} style={{ marginLeft: 20 }}>
             <label>Submenu inner menu title:</label>
             <input
-              {...register(`menus.${nestIndex}.subMenu.${innerIndex}.innerMenus.${k}.title`)}
+              {...register(`menus.${nestIndex}.subMenus.${innerIndex}.innerMenus.${k}.title`)}
               style={{ marginRight: "25px" }}
             />
             <InnerMenuItems nestIndex={nestIndex} innerIndex={innerIndex} innerItemsIndex={k} {...{ control, register }} />

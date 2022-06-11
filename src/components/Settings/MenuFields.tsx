@@ -33,7 +33,7 @@ export default function MenuFields({ control, register }: Props) {
         <button
           type="button"
           onClick={() => {
-            append({label: '', subMenu: []});
+            append({label: '', subMenus: []});
           }}
         >
           Add menu
