@@ -1,15 +1,17 @@
 import React from "react";
 import { useFieldArray } from "react-hook-form";
+import { SettingsButton, SettingsButtons } from "../Settings.styles";
 import { Props } from "../Settings.types";
 import Collapsable from "./Collapsable";
 import SubMenuFields from "./SubMenuFields";
+import { PlusIcon } from "@heroicons/react/solid";
 
 export default function MenuFields({
   control,
   register,
   formState,
   getValues,
-  setValue
+  setValue,
 }: Props) {
   const { fields, append, remove } = useFieldArray({
     control,
@@ -19,7 +21,7 @@ export default function MenuFields({
   return (
     <div>
       {fields.map((item, index) => {
-        setValue?.(`menus.${index}.id`, item.id)
+        setValue?.(`menus.${index}.id`, item.id);
         return (
           <div key={item.id}>
             <Collapsable title={getValues?.(`menus.${index}.label`)}>
@@ -39,15 +41,17 @@ export default function MenuFields({
           </div>
         );
       })}
-      <button
-        type="button"
-        onClick={() => {
-          append({ label: "", subMenus: [] });
-        }}
-      >
-        Add menu
-      </button>
-      <br />
+      <SettingsButtons>
+        <SettingsButton
+          type="button"
+          onClick={() => {
+            append({ label: "", subMenus: [] });
+          }}
+        >
+          <PlusIcon />
+          Add entry
+        </SettingsButton>
+      </SettingsButtons>
     </div>
   );
 }

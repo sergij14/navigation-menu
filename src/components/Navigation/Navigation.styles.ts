@@ -49,7 +49,7 @@ export const InnerMenuContent = styled.div`
   padding: 2rem;
 `;
 
-export const HoverMessage = styled.p`
+export const Message = styled.p`
   padding: 2rem;
   font-size: 1.4rem;
 `;

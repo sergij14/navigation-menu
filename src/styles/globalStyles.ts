@@ -13,14 +13,21 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'Inter', sans-serif;
-    color: black;
+    color: ${({ theme }) => theme.colors.text};
     font-size: 1.6rem;
     background-color: ${({ theme }) => theme.colors.bg};
   }
 
-  a, a:hover, a:focus, a:active {
+  a {
+    color: black;
+  }
+
+  a, a:focus, a:active {
       text-decoration: none;
-      color: inherit;
+  }
+
+  a:hover{
+    text-decoration: underline;
   }
 
   img {
