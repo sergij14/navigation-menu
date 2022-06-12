@@ -34,7 +34,7 @@ const Navigation = () => {
             <MenuIcon />
           </MenuIconContainer>
           <MenuItems>
-            {menus?.map(({ label, subMenus, id: menuId }, i) => (
+            {menus?.map(({ label, link: menuLink, subMenus, id: menuId }, i) => (
               <MenuItem
                 key={menuId}
                 onMouseLeave={() =>
@@ -45,13 +45,13 @@ const Navigation = () => {
                 <SubMenuContainer>
                   <SubMenuInner>
                     <SubMenuItems>
-                      {subMenus?.map(({ label, id: subMenuId }, i) => (
+                      {subMenus?.map(({ label, link: subMenuLink, id: subMenuId }, i) => (
                         <SubMenuItem
                           key={subMenuId}
                           isSelected={activeSubMenu === subMenuId}
                           onMouseOver={() => setActiveSubMenu(subMenuId)}
                         >
-                          {label}
+                          <Link to={`/${subMenuLink}`}>{label}</Link>
                         </SubMenuItem>
                       ))}
                     </SubMenuItems>
@@ -59,32 +59,33 @@ const Navigation = () => {
                     <SubMenuItemContents>
                       {subMenus?.map(
                         ({ innerMenus, label, id: subMenuId }, i) => (
-                          <InnerMenu
-                            key={subMenuId + label}
-                            isVisible={activeSubMenu === subMenuId}
-                            onMouseOver={() => setActiveSubMenu(subMenuId)}
-                          >
-                            {innerMenus?.map(
-                              ({ title, items, id: innerMenuId }) => (
-                                <InnerMenuContent key={innerMenuId}>
-                                  <InnerMenuTitle>{title}</InnerMenuTitle>
-                                  <InnerMenuItems>
-                                    {items?.map(
-                                      ({ label, href, id: innerItemId }) => (
-                                        <InnerMenuItem key={innerItemId}>
-                                          <a href={href}>{label}</a>
-                                        </InnerMenuItem>
-                                      )
-                                    )}
-                                  </InnerMenuItems>
-                                </InnerMenuContent>
-                              )
-                            )}
-                          </InnerMenu>
+                          <React.Fragment key={subMenuId + label}>
+                            <InnerMenu
+                              isVisible={
+                                activeSubMenu === subMenuId &&
+                                innerMenus.length > 0
+                              }
+                              onMouseOver={() => setActiveSubMenu(subMenuId)}
+                            >
+                              {innerMenus?.map(
+                                ({ title, items, id: innerMenuId }) => (
+                                  <InnerMenuContent key={innerMenuId}>
+                                    <InnerMenuTitle>{title}</InnerMenuTitle>
+                                    <InnerMenuItems>
+                                      {items?.map(
+                                        ({ label, href, id: innerItemId }) => (
+                                          <InnerMenuItem key={innerItemId}>
+                                            <a href={href}>{label}</a>
+                                          </InnerMenuItem>
+                                        )
+                                      )}
+                                    </InnerMenuItems>
+                                  </InnerMenuContent>
+                                )
+                              )}
+                            </InnerMenu>
+                          </React.Fragment>
                         )
-                      )}
-                      {!activeSubMenu && (
-                        <Message>Please hover on submenu item</Message>
                       )}
                     </SubMenuItemContents>
                   </SubMenuInner>

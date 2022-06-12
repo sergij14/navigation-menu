@@ -1,8 +1,10 @@
 [
   {
     "label": "Menu 1",
+    "link": "menu-1",
     "subMenus": [
       {
+        "link": "menu-22",
         "label": "Links 1.1",
         "innerMenus": [
           {
@@ -34,6 +36,7 @@
         ]
       },
       {
+        "link": "menu-24",
         "label": "Links 1.4",
         "innerMenus": [
           {
@@ -69,11 +72,11 @@
   },
   {
     "label": "Menu 2",
-
+    "link": "menu-2",
     "subMenus": [
       {
         "label": "Links 2.1",
-
+        "link": "menu-2",
         "innerMenus": [
           {
             "items": [
@@ -107,7 +110,7 @@
       },
       {
         "label": "Links 2.4",
-
+        "link": "menu-2",
         "innerMenus": [
           {
             "items": [
