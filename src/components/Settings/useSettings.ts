@@ -11,7 +11,7 @@ export default function useSettings() {
 
   const { control, register, handleSubmit, formState, getValues, setValue } =
     useForm<NavigationMenuData>({
-      mode: "onChange",
+      mode: "onBlur",
       defaultValues: menus ? { menus } : {},
       resolver: yupResolver(menuSchema),
     });
