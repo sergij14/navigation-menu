@@ -1,6 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import MenuFields from "./Fields/MenuFields";
 import {
   SettingsButton,
+  SettingsButtonDiscard,
   SettingsButtons,
   SettingsContainer,
   SettingsForm,
@@ -19,11 +21,12 @@ export default function Settings() {
     onSubmit,
     setValue,
   } = useSettings();
+  const navigate = useNavigate();
 
   return (
     <SettingsContainer>
       <SettingsHeading>Configure Navigation</SettingsHeading>
-      <SettingsSubHeading>Merga menu can be configured here</SettingsSubHeading>
+      <SettingsSubHeading>Mega menu can be configured here</SettingsSubHeading>
       <form onSubmit={handleSubmit(onSubmit)}>
         <SettingsForm>
           <MenuFields
@@ -35,6 +38,9 @@ export default function Settings() {
           <SettingsButton type="submit" disabled={!formState.isDirty}>
             Save
           </SettingsButton>
+          <SettingsButtonDiscard type="button" onClick={() => navigate("/")}>
+            Discard
+          </SettingsButtonDiscard>
         </SettingsButtons>
       </form>
     </SettingsContainer>

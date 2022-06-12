@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { FieldCollapsableContainer, FieldCollapsableTitle } from "../Settings.styles";
+import { ArrowCircleDownIcon, ArrowCircleRightIcon } from "@heroicons/react/solid";
+
 
 const Collapsable = ({
   children,
@@ -7,17 +10,19 @@ const Collapsable = ({
   children: React.ReactNode;
   title: string | undefined;
 }) => {
-  const [active, setActive] = useState(false);
+  const [isActive, setIsActive] = useState(false);
   useEffect(() => {
     if(!title){
-      setActive(true)
+      setIsActive(true)
     }
   }, [title])
   return (
-    <div>
-      <p onClick={() => setActive(!active)}>{title}</p>
-      {active && children}
-    </div>
+    <FieldCollapsableContainer>
+      <FieldCollapsableTitle onClick={() => setIsActive(!isActive)} isActive={isActive}>
+        {isActive ? <ArrowCircleDownIcon /> : <ArrowCircleRightIcon />}
+        {title}</FieldCollapsableTitle> 
+      {isActive && children}
+    </FieldCollapsableContainer>
   );
 };
 

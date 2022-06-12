@@ -18,7 +18,6 @@ export default function useSettings() {
 
   const navigate = useNavigate();
   const onSubmit = (data: NavigationMenuData) => {
-    console.log(getValues());
     typedStorage.setItem("menus", data.menus);
     navigate("/");
   };
@@ -30,6 +29,6 @@ export default function useSettings() {
     handleSubmit,
     formState,
     onSubmit,
-    setValue
+    setValue,
   };
 }

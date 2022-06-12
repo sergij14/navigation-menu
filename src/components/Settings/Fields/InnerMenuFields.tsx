@@ -1,5 +1,15 @@
+import { PlusIcon, XCircleIcon } from "@heroicons/react/solid";
 import React from "react";
 import { useFieldArray } from "react-hook-form";
+import { ErrorMessage } from "../../App/App.styles";
+import {
+  DeleteFieldButton,
+  FieldInput,
+  FieldLabel,
+  SettingsButton,
+  SettingsField,
+  SettingsFieldContainer,
+} from "../Settings.styles";
 import { Props } from "../Settings.types";
 import Collapsable from "./Collapsable";
 import InnerMenuItems from "./InnerMenuItems";
@@ -19,44 +29,47 @@ export default function InnerMenuFields({
   });
 
   return (
-    <div>
+    <SettingsFieldContainer>
       {fields.map((item, k) => {
-        setValue?.(`menus.${nestIndex}.subMenus.${innerIndex}.innerMenus.${k}.id`, item.id)
+        setValue?.(
+          `menus.${nestIndex}.subMenus.${innerIndex}.innerMenus.${k}.id`,
+          item.id
+        );
 
         return (
-          <div key={item.id} style={{ marginLeft: 20 }}>
+          <SettingsField key={item.id} style={{ marginLeft: 20 }}>
             <Collapsable
               title={getValues?.(
                 `menus.${nestIndex}.subMenus.${innerIndex}.innerMenus.${k}.title`
               )}
             >
-              <label>Submenu inner menu title:</label>
-              <input
+              <FieldLabel>Inner menu title:</FieldLabel>
+              <FieldInput
                 {...register(
                   `menus.${nestIndex}.subMenus.${innerIndex}.innerMenus.${k}.title`
                 )}
                 style={{ marginRight: "25px" }}
               />
-              <p>
+              <ErrorMessage>
                 {
                   formState.errors?.menus?.[nestIndex]?.subMenus?.[innerIndex]
                     ?.innerMenus?.[k].title?.message
                 }
-              </p>
+              </ErrorMessage>
               <InnerMenuItems
                 nestIndex={nestIndex}
                 innerIndex={innerIndex}
                 innerItemsIndex={k}
                 {...{ control, register, formState, getValues, setValue }}
               />
-              <button type="button" onClick={() => remove(k)}>
-                Delete submenu inner menu
-              </button>
+              <DeleteFieldButton type="button" onClick={() => remove(k)}>
+                <XCircleIcon /> Delete inner menu
+              </DeleteFieldButton>
             </Collapsable>
-          </div>
+          </SettingsField>
         );
       })}
-      <button
+      <SettingsButton
         type="button"
         onClick={() =>
           append({
@@ -65,8 +78,9 @@ export default function InnerMenuFields({
           })
         }
       >
-        Add submenu inner menu
-      </button>
-    </div>
+        <PlusIcon />
+        Add inner menu
+      </SettingsButton>
+    </SettingsFieldContainer>
   );
 }

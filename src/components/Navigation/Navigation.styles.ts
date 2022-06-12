@@ -36,7 +36,7 @@ export const InnerMenu = styled.div<{ isVisible: boolean }>`
   display: ${({ isVisible }) => (isVisible ? "flex" : "none")};
   flex-wrap: wrap;
   padding: 1rem;
-  border-top: 4px solid ${({theme}) => theme.colors.border};
+  border-top: 4px solid ${({ theme }) => theme.colors.border};
 `;
 
 export const InnerMenuTitle = styled.h4`
@@ -47,11 +47,6 @@ export const InnerMenuContent = styled.div`
   flex: 0 0 50%;
   max-width: 50%;
   padding: 2rem;
-`;
-
-export const Message = styled.p`
-  padding: 2rem;
-  font-size: 1.4rem;
 `;
 
 export const InnerMenuItems = styled.div`

@@ -1,5 +1,15 @@
+import { PlusIcon, XCircleIcon } from "@heroicons/react/solid";
 import React from "react";
 import { useFieldArray } from "react-hook-form";
+import { ErrorMessage } from "../../App/App.styles";
+import {
+  DeleteFieldButton,
+  FieldInput,
+  FieldLabel,
+  SettingsButton,
+  SettingsField,
+  SettingsFieldContainer,
+} from "../Settings.styles";
 import { Props } from "../Settings.types";
 import Collapsable from "./Collapsable";
 import InnerMenuFields from "./InnerMenuFields";
@@ -18,38 +28,38 @@ export default function SubMenuFields({
   });
 
   return (
-    <div>
+    <SettingsFieldContainer>
       {fields.map((item, k) => {
-        setValue?.(`menus.${nestIndex}.subMenus.${k}.id`, item.id)
+        setValue?.(`menus.${nestIndex}.subMenus.${k}.id`, item.id);
         return (
-          <div key={item.id} style={{ marginLeft: 20 }}>
+          <SettingsField key={item.id} style={{ marginLeft: 20 }}>
             <Collapsable
               title={getValues?.(`menus.${nestIndex}.subMenus.${k}.label`)}
             >
-              <label>Submenu label:</label>
-              <input
+              <FieldLabel>Submenu label:</FieldLabel>
+              <FieldInput
                 {...register(`menus.${nestIndex}.subMenus.${k}.label`)}
                 style={{ marginRight: "25px" }}
               />
-              <p>
+              <ErrorMessage>
                 {
                   formState.errors?.menus?.[nestIndex]?.subMenus?.[k]?.label
                     ?.message
                 }
-              </p>
-              <button type="button" onClick={() => remove(k)}>
-                Delete submenu
-              </button>
+              </ErrorMessage>
+              <DeleteFieldButton type="button" onClick={() => remove(k)}>
+                <XCircleIcon /> Delete submenu
+              </DeleteFieldButton>
               <InnerMenuFields
                 nestIndex={nestIndex}
                 innerIndex={k}
                 {...{ control, register, formState, getValues, setValue }}
               />
             </Collapsable>
-          </div>
+          </SettingsField>
         );
       })}
-      <button
+      <SettingsButton
         type="button"
         onClick={() =>
           append({
@@ -58,8 +68,9 @@ export default function SubMenuFields({
           })
         }
       >
+        <PlusIcon />
         Add submenu
-      </button>
-    </div>
+      </SettingsButton>
+    </SettingsFieldContainer>
   );
 }

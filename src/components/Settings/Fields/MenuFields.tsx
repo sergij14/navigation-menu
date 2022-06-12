@@ -1,10 +1,19 @@
 import React from "react";
 import { useFieldArray } from "react-hook-form";
-import { SettingsButton, SettingsButtons } from "../Settings.styles";
+import {
+  DeleteFieldButton,
+  FieldInput,
+  FieldLabel,
+  SettingsButton,
+  SettingsButtons,
+  SettingsField,
+  SettingsFieldContainer,
+} from "../Settings.styles";
 import { Props } from "../Settings.types";
 import Collapsable from "./Collapsable";
 import SubMenuFields from "./SubMenuFields";
-import { PlusIcon } from "@heroicons/react/solid";
+import { PlusIcon, XCircleIcon } from "@heroicons/react/solid";
+import { ErrorMessage } from "../../App/App.styles";
 
 export default function MenuFields({
   control,
@@ -19,26 +28,27 @@ export default function MenuFields({
   });
 
   return (
-    <div>
+    <SettingsFieldContainer>
       {fields.map((item, index) => {
         setValue?.(`menus.${index}.id`, item.id);
         return (
-          <div key={item.id}>
+          <SettingsField key={item.id}>
             <Collapsable title={getValues?.(`menus.${index}.label`)}>
-              <label>Menu label:</label>
-              <input {...register(`menus.${index}.label`)} />
-              <p>{formState.errors?.menus?.[index]?.label?.message}</p>
-              <button type="button" onClick={() => remove(index)}>
-                Delete menu
-              </button>
+              <FieldLabel>Menu label:</FieldLabel>
+              <FieldInput {...register(`menus.${index}.label`)} />
+              <ErrorMessage>
+                {formState.errors?.menus?.[index]?.label?.message}
+              </ErrorMessage>
               <SubMenuFields
                 nestIndex={index}
                 {...{ control, register, formState, getValues, setValue }}
               />
+              <DeleteFieldButton type="button" onClick={() => remove(index)}>
+                <XCircleIcon />
+                Delete menu
+              </DeleteFieldButton>
             </Collapsable>
-            <hr />
-            <br />
-          </div>
+          </SettingsField>
         );
       })}
       <SettingsButtons>
@@ -52,6 +62,6 @@ export default function MenuFields({
           Add entry
         </SettingsButton>
       </SettingsButtons>
-    </div>
+    </SettingsFieldContainer>
   );
 }

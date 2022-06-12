@@ -10,6 +10,7 @@ declare module "styled-components" {
       subMenuBg: string;
       border: string;
       button: string;
+      error: string,
     };
   }
 }
