@@ -1,15 +1,15 @@
 export type NavigationMenuData = {
   menus: {
     label: string;
-    id: string,
+    id?: string,
     subMenus: {
-      id: string,
+      id?: string,
       label: string;
       innerMenus: {
-        id: string,
+        id?: string,
         title: string;
         items: {
-          id: string,
+          id?: string,
           label: string;
           href: string;
         }[];

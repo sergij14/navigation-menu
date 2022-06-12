@@ -103,7 +103,7 @@ const Navigation = () => {
           </MenuIconContainer>
         </MenuContainer>
       </NavigationContainer>
-      {menus && menus.length && (
+      {menus && menus.length > 0 && (
         <Message>
           To change menu items please go to <Link to="settings">Settings</Link>
         </Message>
