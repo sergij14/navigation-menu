@@ -39,6 +39,12 @@ export default function MenuFields({
               <ErrorMessage>
                 {formState.errors?.menus?.[index]?.label?.message}
               </ErrorMessage>
+
+              <FieldLabel>Menu link:</FieldLabel>
+              <FieldInput {...register(`menus.${index}.link`)} />
+              <ErrorMessage>
+                {formState.errors?.menus?.[index]?.link?.message}
+              </ErrorMessage>
               <SubMenuFields
                 nestIndex={index}
                 {...{ control, register, formState, getValues, setValue }}

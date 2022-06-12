@@ -47,6 +47,18 @@ export default function SubMenuFields({
                     ?.message
                 }
               </ErrorMessage>
+
+              <FieldLabel>Submenu link:</FieldLabel>
+              <FieldInput
+                {...register(`menus.${nestIndex}.subMenus.${k}.link`)}
+                style={{ marginRight: "25px" }}
+              />
+              <ErrorMessage>
+                {
+                  formState.errors?.menus?.[nestIndex]?.subMenus?.[k]?.link
+                    ?.message
+                }
+              </ErrorMessage>
               <DeleteFieldButton type="button" onClick={() => remove(k)}>
                 <XCircleIcon /> Delete submenu
               </DeleteFieldButton>
