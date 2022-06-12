@@ -21,27 +21,31 @@ export default function MenuFields({
         return (
           <div key={item.id}>
             <Collapsable title={getValues?.(`menus.${index}.label`)}>
+              <label>Menu label:</label>
               <input {...register(`menus.${index}.label`)} />
               <p>{formState.errors?.menus?.[index]?.label?.message}</p>
               <button type="button" onClick={() => remove(index)}>
                 Delete menu
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  append({ label: "", subMenus: [] });
-                }}
-              >
-                Add menu
               </button>
               <SubMenuFields
                 nestIndex={index}
                 {...{ control, register, formState, getValues }}
               />
             </Collapsable>
+            <hr />
+            <br />
           </div>
         );
       })}
+      <button
+        type="button"
+        onClick={() => {
+          append({ label: "", subMenus: [] });
+        }}
+      >
+        Add menu
+      </button>
+      <br />
     </div>
   );
 }

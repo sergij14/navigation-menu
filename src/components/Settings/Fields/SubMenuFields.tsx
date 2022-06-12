@@ -40,17 +40,6 @@ export default function SubMenuFields({
               <button type="button" onClick={() => remove(k)}>
                 Delete submenu
               </button>
-              <button
-                type="button"
-                onClick={() =>
-                  append({
-                    label: "",
-                    innerMenus: [],
-                  })
-                }
-              >
-                Add submenu
-              </button>
               <InnerMenuFields
                 nestIndex={nestIndex}
                 innerIndex={k}
@@ -60,8 +49,17 @@ export default function SubMenuFields({
           </div>
         );
       })}
-
-      
+      <button
+        type="button"
+        onClick={() =>
+          append({
+            label: "",
+            innerMenus: [],
+          })
+        }
+      >
+        Add submenu
+      </button>
     </div>
   );
 }

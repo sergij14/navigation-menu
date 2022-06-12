@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Collapsable = ({
   children,
@@ -8,6 +8,11 @@ const Collapsable = ({
   title: string | undefined;
 }) => {
   const [active, setActive] = useState(false);
+  useEffect(() => {
+    if(!title){
+      setActive(true)
+    }
+  }, [title])
   return (
     <div>
       <p onClick={() => setActive(!active)}>{title}</p>

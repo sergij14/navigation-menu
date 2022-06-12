@@ -5,5 +5,5 @@ export type Props = {
   register: UseFormRegister<NavigationMenuData>;
   control: Control<NavigationMenuData, any>;
   formState: FormState<NavigationMenuData>;
-  getValues?: UseFormGetValues<NavigationMenuData>
+  getValues: UseFormGetValues<NavigationMenuData>
 };

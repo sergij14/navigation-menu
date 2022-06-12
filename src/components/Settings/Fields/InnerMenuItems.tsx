@@ -23,9 +23,11 @@ export default function InnerMenuItems({
         return (
           <div key={item.id} style={{ marginLeft: 20 }}>
             <Collapsable
-              title={getValues?.(
-                `menus.${nestIndex}.subMenus.${innerIndex}.innerMenus.${innerItemsIndex}.title`
-              ) + ' entries'}
+              title={
+                getValues?.(
+                  `menus.${nestIndex}.subMenus.${innerIndex}.innerMenus.${innerItemsIndex}.title`
+                ) + " entries"
+              }
             >
               <label>submenu inner menu item label:</label>
               <input
@@ -57,23 +59,21 @@ export default function InnerMenuItems({
               <button type="button" onClick={() => remove(k)}>
                 Delete submenu inner menu item
               </button>
-              <button
-                type="button"
-                onClick={() =>
-                  append({
-                    href: "",
-                    label: "",
-                  })
-                }
-              >
-                Add submenu inner menu item
-              </button>
             </Collapsable>
           </div>
         );
       })}
-
-      
+      <button
+        type="button"
+        onClick={() =>
+          append({
+            href: "",
+            label: "",
+          })
+        }
+      >
+        Add submenu inner menu item
+      </button>
     </div>
   );
 }

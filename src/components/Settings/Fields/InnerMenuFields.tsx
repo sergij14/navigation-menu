@@ -49,23 +49,21 @@ export default function InnerMenuFields({
               <button type="button" onClick={() => remove(k)}>
                 Delete submenu inner menu
               </button>
-              <button
-                type="button"
-                onClick={() =>
-                  append({
-                    items: [],
-                    title: "",
-                  })
-                }
-              >
-                Add submenu inner menu
-              </button>
             </Collapsable>
           </div>
         );
       })}
-
-      
+      <button
+        type="button"
+        onClick={() =>
+          append({
+            items: [],
+            title: "",
+          })
+        }
+      >
+        Add submenu inner menu
+      </button>
     </div>
   );
 }
