@@ -10,6 +10,7 @@ export default function InnerMenuFields({
   control,
   register,
   getValues,
+  setValue,
   formState,
 }: Props & { innerIndex: number; nestIndex: number }) {
   const { fields, remove, append } = useFieldArray({
@@ -20,6 +21,8 @@ export default function InnerMenuFields({
   return (
     <div>
       {fields.map((item, k) => {
+        setValue?.(`menus.${nestIndex}.subMenus.${innerIndex}.innerMenus.${k}.id`, item.id)
+
         return (
           <div key={item.id} style={{ marginLeft: 20 }}>
             <Collapsable
@@ -44,7 +47,7 @@ export default function InnerMenuFields({
                 nestIndex={nestIndex}
                 innerIndex={innerIndex}
                 innerItemsIndex={k}
-                {...{ control, register, formState, getValues }}
+                {...{ control, register, formState, getValues, setValue }}
               />
               <button type="button" onClick={() => remove(k)}>
                 Delete submenu inner menu

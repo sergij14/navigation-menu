@@ -9,6 +9,7 @@ export default function SubMenuFields({
   control,
   register,
   getValues,
+  setValue,
   formState,
 }: Props & { nestIndex: number }) {
   const { fields, remove, append } = useFieldArray({
@@ -19,8 +20,7 @@ export default function SubMenuFields({
   return (
     <div>
       {fields.map((item, k) => {
-        console.log();
-
+        setValue?.(`menus.${nestIndex}.subMenus.${k}.id`, item.id)
         return (
           <div key={item.id} style={{ marginLeft: 20 }}>
             <Collapsable
@@ -43,7 +43,7 @@ export default function SubMenuFields({
               <InnerMenuFields
                 nestIndex={nestIndex}
                 innerIndex={k}
-                {...{ control, register, formState, getValues }}
+                {...{ control, register, formState, getValues, setValue }}
               />
             </Collapsable>
           </div>

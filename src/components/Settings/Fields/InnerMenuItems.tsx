@@ -11,6 +11,7 @@ export default function InnerMenuItems({
   getValues,
   register,
   formState,
+  setValue,
 }: Props & { nestIndex: number; innerIndex: number; innerItemsIndex: number }) {
   const { fields, remove, append } = useFieldArray({
     control,
@@ -20,14 +21,16 @@ export default function InnerMenuItems({
   return (
     <div>
       {fields.map((item, k) => {
+        setValue?.(
+          `menus.${nestIndex}.subMenus.${innerIndex}.innerMenus.${innerItemsIndex}.items.${k}.id`,
+          item.id
+        );
         return (
           <div key={item.id} style={{ marginLeft: 20 }}>
             <Collapsable
-              title={
-                getValues?.(
-                  `menus.${nestIndex}.subMenus.${innerIndex}.innerMenus.${innerItemsIndex}.title`
-                ) + " entries"
-              }
+              title={getValues?.(
+                `menus.${nestIndex}.subMenus.${innerIndex}.innerMenus.${innerItemsIndex}.items.${k}.label`
+              )}
             >
               <label>submenu inner menu item label:</label>
               <input

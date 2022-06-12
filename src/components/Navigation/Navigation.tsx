@@ -20,20 +20,20 @@ import useNavigation from "./useNavigation";
 
 const Navigation = () => {
   const { activeSubMenu, setActiveSubMenu, typedStorage } = useNavigation();
-  const menus = typedStorage.getItem('menus') || [];
+  const menus = typedStorage.getItem("menus") || [];
 
   return (
     <NavigationContainer>
       <MenuContainer>
-        {menus?.map(({ label, subMenus }, i) => (
-          <MenuItem key={label + i}>
+        {menus?.map(({ label, subMenus, id: menuId }) => (
+          <MenuItem key={menuId}>
             <MenuItemText>{label}</MenuItemText>
             <SubMenuContainer>
               <SubMenuInner>
                 <SubMenuItems>
-                  {subMenus.map(({ label }, i) => (
+                  {subMenus.map(({ label, id: subMenuId }, i) => (
                     <SubMenuItem
-                      key={label + i}
+                      key={subMenuId}
                       isSelected={activeSubMenu === i}
                       onMouseOver={() => setActiveSubMenu(i)}
                     >
@@ -43,26 +43,28 @@ const Navigation = () => {
                 </SubMenuItems>
 
                 <SubMenuItemContents>
-                  {subMenus.map(({ innerMenus, label }, i) => (
-                    <InnerMenu
-                      key={label + i}
-                      isVisible={activeSubMenu === i}
-                      onMouseOver={() => setActiveSubMenu(i)}
-                    >
-                      {innerMenus.map(({ title, items }) => (
-                        <InnerMenuContent key={title + i}>
-                          <InnerMenuTitle>{title}</InnerMenuTitle>
-                          <InnerMenuItems>
-                            {items.map(({ label, href }, i) => (
-                              <InnerMenuItem key={label + i}>
-                                <a href={href}>{label}</a>
-                              </InnerMenuItem>
-                            ))}
-                          </InnerMenuItems>
-                        </InnerMenuContent>
-                      ))}
-                    </InnerMenu>
-                  ))}
+                  {subMenus.map(
+                    ({ innerMenus, label, id: subMenuItemId }, i) => (
+                      <InnerMenu
+                        key={subMenuItemId + label}
+                        isVisible={activeSubMenu === i}
+                        onMouseOver={() => setActiveSubMenu(i)}
+                      >
+                        {innerMenus.map(({ title, items, id: innerMenuId }) => (
+                          <InnerMenuContent key={innerMenuId}>
+                            <InnerMenuTitle>{title}</InnerMenuTitle>
+                            <InnerMenuItems>
+                              {items.map(({ label, href, id: innerItemId }) => (
+                                <InnerMenuItem key={innerItemId}>
+                                  <a href={href}>{label}</a>
+                                </InnerMenuItem>
+                              ))}
+                            </InnerMenuItems>
+                          </InnerMenuContent>
+                        ))}
+                      </InnerMenu>
+                    )
+                  )}
                 </SubMenuItemContents>
               </SubMenuInner>
             </SubMenuContainer>

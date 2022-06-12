@@ -9,6 +9,7 @@ export default function MenuFields({
   register,
   formState,
   getValues,
+  setValue
 }: Props) {
   const { fields, append, remove } = useFieldArray({
     control,
@@ -18,6 +19,7 @@ export default function MenuFields({
   return (
     <div>
       {fields.map((item, index) => {
+        setValue?.(`menus.${index}.id`, item.id)
         return (
           <div key={item.id}>
             <Collapsable title={getValues?.(`menus.${index}.label`)}>
@@ -29,7 +31,7 @@ export default function MenuFields({
               </button>
               <SubMenuFields
                 nestIndex={index}
-                {...{ control, register, formState, getValues }}
+                {...{ control, register, formState, getValues, setValue }}
               />
             </Collapsable>
             <hr />

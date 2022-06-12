@@ -9,7 +9,7 @@ export default function useSettings() {
   const { typedStorage } = useNavigation();
   const menus = typedStorage.getItem("menus") || [];
 
-  const { control, register, handleSubmit, formState, getValues } =
+  const { control, register, handleSubmit, formState, getValues, setValue } =
     useForm<NavigationMenuData>({
       mode: "onChange",
       defaultValues: menus ? { menus } : {},
@@ -18,6 +18,7 @@ export default function useSettings() {
 
   const navigate = useNavigate();
   const onSubmit = (data: NavigationMenuData) => {
+    console.log(getValues());
     typedStorage.setItem("menus", data.menus);
     navigate("/");
   };
@@ -29,5 +30,6 @@ export default function useSettings() {
     handleSubmit,
     formState,
     onSubmit,
+    setValue
   };
 }
