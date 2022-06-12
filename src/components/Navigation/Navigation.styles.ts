@@ -12,9 +12,17 @@ export const MenuContainer = styled.ul`
   gap: 1rem;
 `;
 
-export const MenuItemText = styled.span`
-  color: green;
+export const MenuIconContainer = styled.div`
+  width: 2.4rem;
 `;
+
+export const MenuItems = styled.ul`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+`;
+
+export const MenuItemText = styled.span``;
 
 export const SubMenuContainer = styled.ul`
   display: none;
@@ -28,6 +36,7 @@ export const InnerMenu = styled.div<{ isVisible: boolean }>`
   display: ${({ isVisible }) => (isVisible ? "flex" : "none")};
   flex-wrap: wrap;
   padding: 1rem;
+  border-top: 4px solid ${({theme}) => theme.colors.border};
 `;
 
 export const InnerMenuTitle = styled.h4`
@@ -38,6 +47,11 @@ export const InnerMenuContent = styled.div`
   flex: 0 0 50%;
   max-width: 50%;
   padding: 2rem;
+`;
+
+export const HoverMessage = styled.p`
+  padding: 2rem;
+  font-size: 1.4rem;
 `;
 
 export const InnerMenuItems = styled.div`
@@ -73,7 +87,8 @@ export const SubMenuItemContents = styled.div`
 `;
 
 export const SubMenuItem = styled.li<{ isSelected: boolean }>`
-  padding: 0.5rem;
+  cursor: pointer;
+  padding: 1rem 2rem;
   background-color: ${({ isSelected }) =>
     isSelected ? "white" : "transparent"};
   &:hover {
@@ -82,17 +97,15 @@ export const SubMenuItem = styled.li<{ isSelected: boolean }>`
 `;
 
 export const MenuItem = styled.li`
-  background-color: red;
   align-self: flex-start;
   justify-self: flex-start;
   padding: 1rem 1.5rem;
   position: relative;
-
   &:hover {
-    background-color: green;
+    background-color: ${({ theme }) => theme.colors.subMenuBg};
   }
   &:hover ${MenuItemText} {
-    color: white;
+    color: ${({ theme }) => theme.colors.border};
   }
   &:hover ${SubMenuContainer} {
     display: block;
