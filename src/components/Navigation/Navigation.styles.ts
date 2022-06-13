@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const NavigationContainer = styled.div`
@@ -22,13 +23,20 @@ export const MenuItems = styled.ul`
   gap: 1rem;
 `;
 
-export const MenuItemText = styled.span``;
+export const MenuItemLink = styled(Link)`
+  display: block;
+  padding: 1rem 1.5rem;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.subMenuBg};
+    color: ${({ theme }) => theme.colors.border};
+    text-decoration: none;
+  }
+`;
 
-export const SubMenuContainer = styled.ul`
+export const SubMenuContainer = styled.div`
   display: none;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 100%;
 `;
 
 export const InnerMenu = styled.div<{ isVisible: boolean }>`
@@ -58,13 +66,13 @@ export const InnerMenuItems = styled.div`
 export const InnerMenuItem = styled.p``;
 
 export const SubMenuInner = styled.div`
-  margin-top: 6rem;
+  margin-top: 2rem;
   background: ${({ theme }) => theme.colors.subMenuBg};
   width: 60vw;
   display: flex;
 `;
 
-export const SubMenuItems = styled.div`
+export const SubMenuItems = styled.ul`
   display: flex;
   flex-direction: column;
   max-width: 30%;
@@ -84,6 +92,7 @@ export const SubMenuItemContents = styled.div`
 export const SubMenuItem = styled.li<{ isSelected: boolean }>`
   cursor: pointer;
   padding: 1rem 2rem;
+  white-space: nowrap;
   background-color: ${({ isSelected }) =>
     isSelected ? "white" : "transparent"};
   &:hover {
@@ -94,14 +103,7 @@ export const SubMenuItem = styled.li<{ isSelected: boolean }>`
 export const MenuItem = styled.li`
   align-self: flex-start;
   justify-self: flex-start;
-  padding: 1rem 1.5rem;
   position: relative;
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.subMenuBg};
-  }
-  &:hover ${MenuItemText} {
-    color: ${({ theme }) => theme.colors.border};
-  }
   &:hover ${SubMenuContainer} {
     display: block;
   }

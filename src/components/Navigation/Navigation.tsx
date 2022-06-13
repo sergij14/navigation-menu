@@ -9,8 +9,8 @@ import {
   MenuContainer,
   MenuIconContainer,
   MenuItem,
+  MenuItemLink,
   MenuItems,
-  MenuItemText,
   NavigationContainer,
   SubMenuContainer,
   SubMenuInner,
@@ -34,37 +34,37 @@ const Navigation = () => {
             <MenuIcon />
           </MenuIconContainer>
           <MenuItems>
-            {menus?.map(({ label, link: menuLink, subMenus, id: menuId }, i) => (
-              <MenuItem
-                key={menuId}
-                onMouseLeave={() =>
-                  activeSubMenu && setActiveSubMenu(undefined)
-                }
-              >
-                <MenuItemText>{label}</MenuItemText>
-                <SubMenuContainer>
-                  <SubMenuInner>
-                    <SubMenuItems>
-                      {subMenus?.map(({ label, link: subMenuLink, id: subMenuId }, i) => (
-                        <SubMenuItem
-                          key={subMenuId}
-                          isSelected={activeSubMenu === subMenuId}
-                          onMouseOver={() => setActiveSubMenu(subMenuId)}
-                        >
-                          <Link to={`/${subMenuLink}`}>{label}</Link>
-                        </SubMenuItem>
-                      ))}
-                    </SubMenuItems>
+            {menus?.map(
+              ({ label, link: menuLink, subMenus, id: menuId }, i) => (
+                <MenuItem
+                  key={menuId}
+                  onMouseLeave={() =>
+                    activeSubMenu && setActiveSubMenu(undefined)
+                  }
+                >
+                  <MenuItemLink to={`/${menuLink}`}>{label}</MenuItemLink>
+                  <SubMenuContainer>
+                    <SubMenuInner>
+                      <SubMenuItems>
+                        {subMenus?.map(
+                          ({ label, link: subMenuLink, id: subMenuId }, i) => (
+                            <SubMenuItem
+                              key={subMenuId}
+                              isSelected={activeSubMenu === subMenuId}
+                              onMouseOver={() => setActiveSubMenu(subMenuId)}
+                            >
+                              <Link to={`/${subMenuLink}`}>{label}</Link>
+                            </SubMenuItem>
+                          )
+                        )}
+                      </SubMenuItems>
 
-                    <SubMenuItemContents>
-                      {subMenus?.map(
-                        ({ innerMenus, label, id: subMenuId }, i) => (
-                          <React.Fragment key={subMenuId + label}>
+                      <SubMenuItemContents>
+                        {subMenus?.map(
+                          ({ innerMenus, label, id: subMenuId }, i) => (
                             <InnerMenu
-                              isVisible={
-                                activeSubMenu === subMenuId &&
-                                innerMenus.length > 0
-                              }
+                              key={subMenuId + label}
+                              isVisible={activeSubMenu === subMenuId}
                               onMouseOver={() => setActiveSubMenu(subMenuId)}
                             >
                               {innerMenus?.map(
@@ -84,14 +84,14 @@ const Navigation = () => {
                                 )
                               )}
                             </InnerMenu>
-                          </React.Fragment>
-                        )
-                      )}
-                    </SubMenuItemContents>
-                  </SubMenuInner>
-                </SubMenuContainer>
-              </MenuItem>
-            ))}
+                          )
+                        )}
+                      </SubMenuItemContents>
+                    </SubMenuInner>
+                  </SubMenuContainer>
+                </MenuItem>
+              )
+            )}
             {menus && !menus.length && (
               <p>
                 There are no menu items. Please go to{" "}
