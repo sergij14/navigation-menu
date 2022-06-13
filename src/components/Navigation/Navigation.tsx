@@ -34,63 +34,83 @@ const Navigation = () => {
           </MenuIconContainer>
           <MenuItems>
             {menus?.map(
-              ({ label, link: menuLink, subMenus, id: menuId }, i) => (
-                <MenuItem key={menuId}>
-                  <MenuItemLink
-                    onMouseOver={() =>
-                      setActiveSubMenu(menus[i]?.subMenus[0]?.id)
-                    }
-                    to={`${menuLink}`}
-                  >
-                    {label}
-                  </MenuItemLink>
-                  <SubMenuContainer>
-                    <SubMenuInner>
-                      <SubMenuItems>
-                        {subMenus?.map(
-                          ({ label, link: subMenuLink, id: subMenuId }, i) => (
-                            <SubMenuItem
-                              key={subMenuId}
-                              isSelected={activeSubMenu === subMenuId}
-                              onMouseOver={() => setActiveSubMenu(subMenuId)}
-                            >
-                              <Link to={`${subMenuLink}`}>{label}</Link>
-                            </SubMenuItem>
-                          )
-                        )}
-                      </SubMenuItems>
+              ({ label, link: menuLink, subMenus, id: menuId }, i) => {
+                const hasInnerMenus =
+                  menus[i]?.subMenus[0]?.innerMenus.length > 0;
 
-                      <SubMenuItemContents>
-                        {subMenus?.map(
-                          ({ innerMenus, label, id: subMenuId }, i) => (
-                            <InnerMenu
-                              key={subMenuId + label}
-                              isVisible={activeSubMenu === subMenuId && innerMenus.length > 0}
-                            >
-                              {innerMenus?.map(
-                                ({ title, items, id: innerMenuId }) => (
-                                  <InnerMenuContent key={innerMenuId}>
-                                    <InnerMenuTitle>{title}</InnerMenuTitle>
-                                    <InnerMenuItems>
-                                      {items?.map(
-                                        ({ label, link, id: innerItemId }) => (
-                                          <InnerMenuItem key={innerItemId}>
-                                            <Link to={`${link}`}>{label}</Link>
-                                          </InnerMenuItem>
-                                        )
-                                      )}
-                                    </InnerMenuItems>
-                                  </InnerMenuContent>
-                                )
-                              )}
-                            </InnerMenu>
-                          )
-                        )}
-                      </SubMenuItemContents>
-                    </SubMenuInner>
-                  </SubMenuContainer>
-                </MenuItem>
-              )
+                return (
+                  <MenuItem key={menuId}>
+                    <MenuItemLink
+                      onMouseOver={() => {
+                        hasInnerMenus &&
+                          setActiveSubMenu(menus[i]?.subMenus[0]?.id);
+                      }}
+                      to={`${menuLink}`}
+                    >
+                      {label}
+                    </MenuItemLink>
+                    <SubMenuContainer>
+                      <SubMenuInner>
+                        <SubMenuItems>
+                          {subMenus?.map(
+                            (
+                              { label, link: subMenuLink, id: subMenuId },
+                              i
+                            ) => (
+                              <SubMenuItem
+                                key={subMenuId}
+                                isSelected={activeSubMenu === subMenuId}
+                                onMouseOver={() =>
+                                  hasInnerMenus && setActiveSubMenu(subMenuId)
+                                }
+                              >
+                                <Link to={`${subMenuLink}`}>{label}</Link>
+                              </SubMenuItem>
+                            )
+                          )}
+                        </SubMenuItems>
+
+                        <SubMenuItemContents>
+                          {subMenus?.map(
+                            ({ innerMenus, label, id: subMenuId }, i) => (
+                              <InnerMenu
+                                key={subMenuId + label}
+                                isVisible={
+                                  activeSubMenu === subMenuId &&
+                                  innerMenus.length > 0
+                                }
+                              >
+                                {innerMenus?.map(
+                                  ({ title, items, id: innerMenuId }) => (
+                                    <InnerMenuContent key={innerMenuId}>
+                                      <InnerMenuTitle>{title}</InnerMenuTitle>
+                                      <InnerMenuItems>
+                                        {items?.map(
+                                          ({
+                                            label,
+                                            link,
+                                            id: innerItemId,
+                                          }) => (
+                                            <InnerMenuItem key={innerItemId}>
+                                              <Link to={`${link}`}>
+                                                {label}
+                                              </Link>
+                                            </InnerMenuItem>
+                                          )
+                                        )}
+                                      </InnerMenuItems>
+                                    </InnerMenuContent>
+                                  )
+                                )}
+                              </InnerMenu>
+                            )
+                          )}
+                        </SubMenuItemContents>
+                      </SubMenuInner>
+                    </SubMenuContainer>
+                  </MenuItem>
+                );
+              }
             )}
             {menus && !menus.length && (
               <p>
