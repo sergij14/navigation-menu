@@ -24,10 +24,6 @@ export default function useSettings() {
   });
 
   useEffect(() => {
-    reset({ menus });
-  }, [menus, reset]);
-
-  useEffect(() => {
     if (searchTerm !== "") {
       reset({
         menus: menus?.filter(({ label }) =>
