@@ -23,8 +23,7 @@ import { MenuIcon, DotsHorizontalIcon } from "@heroicons/react/solid";
 import { Message } from "../App/App.styles";
 
 const Navigation = () => {
-  const { activeSubMenu, setActiveSubMenu, typedStorage } = useNavigation();
-  const menus = typedStorage.getItem("menus") || [];
+  const { activeSubMenu, setActiveSubMenu, menus } = useNavigation();
 
   return (
     <>

@@ -4,17 +4,27 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { menuSchema } from "./Settings.schema";
 import useNavigation from "../Navigation/useNavigation";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function useSettings() {
-  const { typedStorage } = useNavigation();
-  const menus = typedStorage.getItem("menus") || [];
+  const { typedStorage, menus } = useNavigation();
 
-  const { control, register, handleSubmit, formState, getValues, setValue } =
-    useForm<NavigationMenuData>({
-      mode: "onBlur",
-      defaultValues: menus ? { menus } : {},
-      resolver: yupResolver(menuSchema),
-    });
+  const {
+    control,
+    register,
+    handleSubmit,
+    formState,
+    getValues,
+    setValue,
+    reset,
+  } = useForm<NavigationMenuData>({
+    mode: "onBlur",
+    resolver: yupResolver(menuSchema),
+  });
+
+  useEffect(() => {
+    reset({ menus });
+  }, [menus, reset]);
 
   const navigate = useNavigate();
   const onSubmit = (data: NavigationMenuData) => {
