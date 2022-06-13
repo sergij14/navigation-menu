@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const NavigationContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.bg};
@@ -90,13 +90,22 @@ export const SubMenuItemContents = styled.div`
 `;
 
 export const SubMenuItem = styled.li<{ isSelected: boolean }>`
-  cursor: pointer;
-  padding: 1rem 2rem;
-  white-space: nowrap;
-  background-color: ${({ isSelected }) =>
-    isSelected ? "white" : "transparent"};
-  &:hover {
-    background-color: white;
+  & > a {
+    cursor: pointer;
+    display: block;
+    padding: 1rem 2rem;
+    white-space: nowrap;
+    ${({ isSelected }) =>
+      isSelected &&
+      css`
+        color: ${({ theme }) => theme.colors.border};
+        background-color: white;
+      `};
+    &:hover {
+      background-color: white;
+      color: ${({ theme }) => theme.colors.border};
+      text-decoration: none;
+    }
   }
 `;
 
