@@ -25,7 +25,7 @@ export const SettingsSubHeading = styled.p`
 
 export const SettingsButtons = styled.div`
   border-top: 1px ${({ theme }) => theme.colors.subMenuBg} dashed;
-  margin-top: 5rem;
+  margin-top: 2rem;
   padding-top: 2rem;
   display: flex;
   gap: 1rem;
