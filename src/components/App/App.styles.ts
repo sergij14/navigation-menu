@@ -37,3 +37,16 @@ export const buttonGeneralStyles = () => css`
     width: 1.5rem;
   }
 `;
+
+export const inputGeneralStyles = css`
+  border: 0;
+  outline: none;
+  background-color: ${({ theme }) => theme.colors.bg};
+  padding: 0.8rem;
+  font-size: inherit;
+  width: 100%;
+  &:focus {
+    outline: none;
+    background-color: ${({ theme }) => theme.colors.subMenuBg};
+  }
+`;

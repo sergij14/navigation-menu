@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { buttonGeneralStyles } from "../App/App.styles";
+import { buttonGeneralStyles, inputGeneralStyles } from "../App/App.styles";
 
 export const SettingsContainer = styled.div`
   padding: 2rem;
@@ -89,18 +89,20 @@ export const FieldCollapsableTitle = styled.span<{ isActive: boolean }>`
 `;
 
 export const FieldInput = styled.input`
-  border: 0;
-  outline: none;
+  ${inputGeneralStyles}
   border-bottom: 2px solid ${({ theme }) => theme.colors.subMenuBg};
-  background-color: ${({ theme }) => theme.colors.bg};
-  padding: 0.8rem;
-  font-size: inherit;
-  width: 100%;
   max-width: 200px;
   &:focus {
-    outline: none;
-    background-color: ${({ theme }) => theme.colors.subMenuBg};
     border-bottom: 2px solid ${({ theme }) => theme.colors.button};
+  }
+`;
+
+export const SearchFieldInput = styled.input`
+  ${inputGeneralStyles}
+  border: 2px solid ${({ theme }) => theme.colors.subMenuBg};
+  max-width: 200px;
+  &:focus {
+    border: 2px solid ${({ theme }) => theme.colors.button};
   }
 `;
 
