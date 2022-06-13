@@ -74,9 +74,9 @@ const Navigation = () => {
                                     <InnerMenuTitle>{title}</InnerMenuTitle>
                                     <InnerMenuItems>
                                       {items?.map(
-                                        ({ label, href, id: innerItemId }) => (
+                                        ({ label, link, id: innerItemId }) => (
                                           <InnerMenuItem key={innerItemId}>
-                                            <a href={href}>{label}</a>
+                                            <a href={link}>{label}</a>
                                           </InnerMenuItem>
                                         )
                                       )}

@@ -13,7 +13,7 @@ export type NavigationMenuData = {
         items: {
           id?: string;
           label: string;
-          href: string;
+          link: string;
         }[];
       }[];
     }[];

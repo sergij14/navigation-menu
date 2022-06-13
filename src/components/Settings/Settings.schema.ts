@@ -17,15 +17,15 @@ export const menuSchema = yup.object({
             yup.object().shape({
               title: yup
                 .string()
-                .required("Submenu inner menu title is required"),
+                .required("Inner menu title is required"),
               items: yup.array().of(
                 yup.object().shape({
                   label: yup
                     .string()
-                    .required("Inner menu item label is required"),
-                  href: yup
+                    .required("Menu item label is required"),
+                  link: yup
                     .string()
-                    .required("Inner menu item href is required"),
+                    .required("Menu item link is required"),
                 })
               ),
             })

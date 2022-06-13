@@ -65,7 +65,7 @@ export default function InnerMenuItems({
                   <FieldLabel>Item link:</FieldLabel>
                   <FieldInput
                     {...register(
-                      `menus.${nestIndex}.subMenus.${innerIndex}.innerMenus.${innerItemsIndex}.items.${k}.href`
+                      `menus.${nestIndex}.subMenus.${innerIndex}.innerMenus.${innerItemsIndex}.items.${k}.link`
                     )}
                     style={{ marginRight: "25px" }}
                   />
@@ -73,7 +73,7 @@ export default function InnerMenuItems({
                     {
                       formState.errors?.menus?.[nestIndex]?.subMenus?.[
                         innerIndex
-                      ]?.innerMenus?.[innerItemsIndex]?.items?.[k]?.href
+                      ]?.innerMenus?.[innerItemsIndex]?.items?.[k]?.link
                         ?.message
                     }
                   </ErrorMessage>
@@ -91,7 +91,7 @@ export default function InnerMenuItems({
         type="button"
         onClick={() =>
           append({
-            href: "",
+            link: "",
             label: "",
           })
         }

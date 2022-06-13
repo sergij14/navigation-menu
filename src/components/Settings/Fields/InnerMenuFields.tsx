@@ -53,7 +53,7 @@ export default function InnerMenuFields({
               <ErrorMessage>
                 {
                   formState.errors?.menus?.[nestIndex]?.subMenus?.[innerIndex]
-                    ?.innerMenus?.[k].title?.message
+                    ?.innerMenus?.[k]?.title?.message
                 }
               </ErrorMessage>
               <InnerMenuItems

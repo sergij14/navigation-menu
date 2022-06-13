@@ -10,11 +10,11 @@
           {
             "items": [
               {
-                "href": "menu-link-1-1-1",
+                "link": "menu-link-1-1-1",
                 "label": "Menu Link 1.1.1"
               },
               {
-                "href": "menu-link-1-1-2",
+                "link": "menu-link-1-1-2",
                 "label": "Menu Link 1.1.2"
               }
             ],
@@ -23,11 +23,11 @@
           {
             "items": [
               {
-                "href": "menu-link-1-2-1",
+                "link": "menu-link-1-2-1",
                 "label": "Menu Link 1.2.1"
               },
               {
-                "href": "menu-link-1-2-1",
+                "link": "menu-link-1-2-1",
                 "label": "Menu Link 1.2.2"
               }
             ],
@@ -42,11 +42,11 @@
           {
             "items": [
               {
-                "href": "menu-link-1-4-1",
+                "link": "menu-link-1-4-1",
                 "label": "Menu Link 1.4.1"
               },
               {
-                "href": "menu-link-1-4-2",
+                "link": "menu-link-1-4-2",
                 "label": "Menu Link 1.4.2"
               }
             ],
@@ -55,11 +55,11 @@
           {
             "items": [
               {
-                "href": "menu-link-1-4-1",
+                "link": "menu-link-1-4-1",
                 "label": "Menu Link 1.4.1"
               },
               {
-                "href": "menu-link-1-4-1",
+                "link": "menu-link-1-4-1",
                 "label": "Menu Link 1.4.2"
               }
             ],
@@ -81,11 +81,11 @@
           {
             "items": [
               {
-                "href": "menu-link-2-1-1",
+                "link": "menu-link-2-1-1",
                 "label": "Menu Link 2.1.1"
               },
               {
-                "href": "menu-link-2-1-2",
+                "link": "menu-link-2-1-2",
                 "label": "Menu Link 2.1.2"
               }
             ],
@@ -95,11 +95,11 @@
           {
             "items": [
               {
-                "href": "menu-link-2-2-1",
+                "link": "menu-link-2-2-1",
                 "label": "Menu Link 2.2.1"
               },
               {
-                "href": "menu-link-2-2-1",
+                "link": "menu-link-2-2-1",
                 "label": "Menu Link 2.2.2"
               }
             ],
@@ -115,11 +115,11 @@
           {
             "items": [
               {
-                "href": "menu-link-2-4-1",
+                "link": "menu-link-2-4-1",
                 "label": "Menu Link 2.4.1"
               },
               {
-                "href": "menu-link-2-4-2",
+                "link": "menu-link-2-4-2",
                 "label": "Menu Link 2.4.2"
               }
             ],
@@ -129,11 +129,11 @@
           {
             "items": [
               {
-                "href": "menu-link-2-4-1",
+                "link": "menu-link-2-4-1",
                 "label": "Menu Link 2.4.1"
               },
               {
-                "href": "menu-link-2-4-1",
+                "link": "menu-link-2-4-1",
                 "label": "Menu Link 2.4.2"
               }
             ],
