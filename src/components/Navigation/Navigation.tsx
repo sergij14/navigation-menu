@@ -36,13 +36,15 @@ const Navigation = () => {
           <MenuItems>
             {menus?.map(
               ({ label, link: menuLink, subMenus, id: menuId }, i) => (
-                <MenuItem
-                  key={menuId}
-                  onMouseLeave={() =>
-                    activeSubMenu && setActiveSubMenu(undefined)
-                  }
-                >
-                  <MenuItemLink to={`/${menuLink}`}>{label}</MenuItemLink>
+                <MenuItem key={menuId}>
+                  <MenuItemLink
+                    onMouseOver={() =>
+                      setActiveSubMenu(menus[i].subMenus[0].id)
+                    }
+                    to={`/${menuLink}`}
+                  >
+                    {label}
+                  </MenuItemLink>
                   <SubMenuContainer>
                     <SubMenuInner>
                       <SubMenuItems>
@@ -65,7 +67,6 @@ const Navigation = () => {
                             <InnerMenu
                               key={subMenuId + label}
                               isVisible={activeSubMenu === subMenuId}
-                              onMouseOver={() => setActiveSubMenu(subMenuId)}
                             >
                               {innerMenus?.map(
                                 ({ title, items, id: innerMenuId }) => (

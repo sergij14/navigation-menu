@@ -107,4 +107,8 @@ export const MenuItem = styled.li`
   &:hover ${SubMenuContainer} {
     display: block;
   }
+  &:hover ${MenuItemLink} {
+    background-color: ${({ theme }) => theme.colors.subMenuBg};
+    color: ${({ theme }) => theme.colors.border};
+  }
 `;
