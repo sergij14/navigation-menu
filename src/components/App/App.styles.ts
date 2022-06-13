@@ -45,6 +45,7 @@ export const inputGeneralStyles = css`
   padding: 0.8rem;
   font-size: inherit;
   width: 100%;
+  max-width: 270px;
   &:focus {
     outline: none;
     background-color: ${({ theme }) => theme.colors.subMenuBg};

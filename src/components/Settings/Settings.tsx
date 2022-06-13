@@ -32,7 +32,7 @@ export default function Settings() {
       <SettingsSubHeading>Mega menu can be configured here</SettingsSubHeading>
       <form onSubmit={handleSubmit(onSubmit)}>
         <SettingsForm>
-      <SearchFieldInput type="text" placeholder="Menu item..." value={searchTerm} onChange={({target: {value}}) => setSearchTerm(value)} />
+      <SearchFieldInput type="text" placeholder="Search menu item..." value={searchTerm} onChange={({target: {value}}) => setSearchTerm(value)} />
           <MenuFields
             {...{ control, register, formState, getValues, setValue }}
           />

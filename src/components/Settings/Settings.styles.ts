@@ -91,7 +91,6 @@ export const FieldCollapsableTitle = styled.span<{ isActive: boolean }>`
 export const FieldInput = styled.input`
   ${inputGeneralStyles}
   border-bottom: 2px solid ${({ theme }) => theme.colors.subMenuBg};
-  max-width: 200px;
   &:focus {
     border-bottom: 2px solid ${({ theme }) => theme.colors.button};
   }
@@ -100,7 +99,7 @@ export const FieldInput = styled.input`
 export const SearchFieldInput = styled.input`
   ${inputGeneralStyles}
   border: 2px solid ${({ theme }) => theme.colors.subMenuBg};
-  max-width: 200px;
+  max-width: 320px;
   &:focus {
     border: 2px solid ${({ theme }) => theme.colors.button};
   }
