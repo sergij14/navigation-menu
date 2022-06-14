@@ -4,11 +4,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { menuSchema } from "./Settings.schema";
 import useNavigation from "../Navigation/useNavigation";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export default function useSettings() {
   const { typedStorage, menus } = useNavigation();
-  const [searchTerm, setSearchTerm] = useState<string>("");
 
   const {
     control,
@@ -24,16 +23,8 @@ export default function useSettings() {
   });
 
   useEffect(() => {
-    if (searchTerm !== "") {
-      reset({
-        menus: menus?.filter(({ label }) =>
-          label.toLowerCase().includes(searchTerm.toLowerCase())
-        ),
-      });
-      return;
-    }
     reset({ menus });
-  }, [searchTerm, reset, menus]);
+  }, [reset, menus]);
 
   const navigate = useNavigate();
   const onSubmit = (data: NavigationMenuData) => {
@@ -49,7 +40,5 @@ export default function useSettings() {
     formState,
     onSubmit,
     setValue,
-    searchTerm,
-    setSearchTerm,
   };
 }
