@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import MenuFields from "./Fields/MenuFields";
 import {
-  SearchFieldInput,
   SettingsButton,
   SettingsButtonDiscard,
   SettingsButtons,
@@ -20,9 +19,7 @@ export default function Settings() {
     formState,
     getValues,
     onSubmit,
-    setValue,
-    setSearchTerm,
-    searchTerm
+    setValue
   } = useSettings();
   const navigate = useNavigate();
 
@@ -32,7 +29,6 @@ export default function Settings() {
       <SettingsSubHeading>Mega menu can be configured here</SettingsSubHeading>
       <form onSubmit={handleSubmit(onSubmit)}>
         <SettingsForm>
-      <SearchFieldInput type="text" placeholder="Search menu item..." value={searchTerm} onChange={({target: {value}}) => setSearchTerm(value)} />
           <MenuFields
             {...{ control, register, formState, getValues, setValue }}
           />

@@ -96,15 +96,6 @@ export const FieldInput = styled.input`
   }
 `;
 
-export const SearchFieldInput = styled.input`
-  ${inputGeneralStyles}
-  border: 2px solid ${({ theme }) => theme.colors.subMenuBg};
-  max-width: 320px;
-  &:focus {
-    border: 2px solid ${({ theme }) => theme.colors.button};
-  }
-`;
-
 export const DeleteFieldButton = styled.button`
   ${buttonGeneralStyles};
   color: white;
