@@ -55,6 +55,9 @@ export const InnerMenuContent = styled.div`
   flex: 0 0 50%;
   max-width: 50%;
   padding: 2rem;
+  @media (max-width: ${({ theme }) => theme.breakPoints.md}) {
+    padding: 1rem;
+  }
 `;
 
 export const InnerMenuItems = styled.div`
@@ -70,6 +73,9 @@ export const SubMenuInner = styled.div`
   background: ${({ theme }) => theme.colors.subMenuBg};
   width: 60vw;
   display: flex;
+  @media (max-width: ${({ theme }) => theme.breakPoints.md}) {
+    flex-direction: column;
+  }
 `;
 
 export const SubMenuItems = styled.ul`
@@ -79,6 +85,10 @@ export const SubMenuItems = styled.ul`
   flex: 0 0 30%;
   align-self: stretch;
   justify-self: stretch;
+  @media (max-width: ${({ theme }) => theme.breakPoints.md}) {
+    max-width: 100%;
+    flex: 0 0 100%;
+  }
 `;
 
 export const SubMenuItemContents = styled.div`
@@ -87,6 +97,10 @@ export const SubMenuItemContents = styled.div`
   flex: 0 0 70%;
   align-self: stretch;
   justify-self: stretch;
+  @media (max-width: ${({ theme }) => theme.breakPoints.md}) {
+    max-width: 100%;
+    flex: 0 0 100%;
+  }
 `;
 
 export const SubMenuItem = styled.li<{ isSelected: boolean }>`

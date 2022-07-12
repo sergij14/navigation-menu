@@ -9,4 +9,11 @@ export const theme: DefaultTheme = {
     button: "#5b5fc7",
     error: "#8E192E",
   },
+  breakPoints: {
+    sm: '425px',
+    md: '768px',
+    lg: '964px',
+    xl: '1240px',
+    xxl: '1420px'
+  }
 };

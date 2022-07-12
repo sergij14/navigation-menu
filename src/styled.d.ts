@@ -12,5 +12,12 @@ declare module "styled-components" {
       button: string;
       error: string,
     };
+    breakPoints: {
+      sm: string;
+      md: string;
+      lg: string;
+      xl: string;
+      xxl: string;
+    };
   }
 }
